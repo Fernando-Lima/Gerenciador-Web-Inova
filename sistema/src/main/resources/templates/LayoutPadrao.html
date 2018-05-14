@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" 
+xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="utf-8"/>
+        <title>Sistema Inova  </title>
+        <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" type="text/css"/>
+        <link rel="stylesheet" th:href="@{/css/bootstrap-datepicker.standalone.min.css}" type="text/css"/>
+        <link rel="stylesheet" th:href="@{/css/estilo.css}" type="text/css"/>
+    </head>
+    <body>
+        <header layout:include="Cabescalho">
+        </header>
+        <div layout:include="Sidebar">
+        </div>
+        <section layout:fragment="conteudo">
+            <p>
+                conteudo
+            </p>
+        </section>
+        
+        
+        
+        <script th:src="@{/js/jquery-3.2.1.min.js}">
+        </script>
+        <script th:src="@{/js/bootstrap.min.js}">
+        </script>
+    </body>
+</html>
