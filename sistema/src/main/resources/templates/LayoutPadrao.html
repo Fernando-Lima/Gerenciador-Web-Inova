@@ -1,30 +1,34 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" 
-xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" 
-xmlns:th="http://www.thymeleaf.org">
-    <head>
-        <meta charset="utf-8"/>
-        <title>Sistema Inova  </title>
-        <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" type="text/css"/>
-        <link rel="stylesheet" th:href="@{/css/bootstrap-datepicker.standalone.min.css}" type="text/css"/>
-        <link rel="stylesheet" th:href="@{/css/estilo.css}" type="text/css"/>
-    </head>
-    <body>
-        <header layout:include="Cabescalho">
-        </header>
-        <div layout:include="Sidebar">
-        </div>
-        <section layout:fragment="conteudo">
-            <p>
-                conteudo
-            </p>
-        </section>
-        
-        
-        
-        <script th:src="@{/js/jquery-3.2.1.min.js}">
-        </script>
-        <script th:src="@{/js/bootstrap.min.js}">
-        </script>
-    </body>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width" />
+
+<title>Cobrança</title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+</head>
+<body>
+	<div class="container-fluid">
+		<!-- 	não utilizar o layout:include, trocar por th:include -->
+		<header th:include="Cabecalho"></header>
+
+		<div class="row">
+			<div class="col-sm-2 sidebar bg-light border">
+				<div th:include="Sidebar"></div>
+			</div>
+			<div class="col-sm-10 conteudo">
+				<section layout:fragment="conteudo"></section>
+			</div>
+
+		</div>
+	</div>
+
+	<script th:src="@{/js/jquery-2.1.4.min.js}"></script>
+	<script th:src="@{/js/bootstrap.min.js}"></script>
+</body>
 </html>

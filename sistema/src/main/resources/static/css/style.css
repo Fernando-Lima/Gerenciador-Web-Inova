@@ -1,6 +1,6 @@
-.container-fluid{
-	padding: 0;
+.sidebar, .conteudo{	
+	padding-top: 48px;
 }
-.sidebar{
-	padding: 48px 0 0;
+.sidebar li a{
+	padding-left:0;
 }
