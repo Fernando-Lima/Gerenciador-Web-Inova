@@ -5,12 +5,12 @@
 
 <!-- 	sidebar -->
 	<ul class="nav flex-column">
-		<li class="nav-item"><a class="nav-link active" href="#">Dashboard</a>
+		<li class="nav-item"><a class="nav-link active" th:href="@{/dashboard}">Visão geral</a>
 		</li>
-		<li class="nav-item"><a class="nav-link text-secondary" href="#">Link</a></li>
-		<li class="nav-item"><a class="nav-link text-secondary" href="#">Link</a></li>
-		<li class="nav-item"><a class="nav-link text-secondary disabled"
-			href="#">Disabled</a></li>
+		<li class="nav-item"><a class="nav-link text-secondary" th:href="@{/clientes}">Clientes</a></li>
+		<li class="nav-item"><a class="nav-link text-secondary" th:href="@{/estoque}">Estoque</a></li>
+		<li class="nav-item"><a class="nav-link text-secondary" th:href="@{/financeiro}">Financeiro</a></li>
+		<li class="nav-item"><a class="nav-link text-secondary" th:href="@{/cadastro}">Cadastro</a></li>
 	</ul>
 
 <!-- 		/sidebar -->

@@ -4,11 +4,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/patrimonios")
-public class PatrimonioController {
+@RequestMapping("/clientes")
+public class ClienteController {
 
-	
-	public String novo() {
-		return "tabelaPatrimonio";
+	@RequestMapping
+	public String clientes() {
+		return "Clientes";
 	}
 }
