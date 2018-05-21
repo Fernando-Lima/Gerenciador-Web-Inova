@@ -8,17 +8,57 @@
 </head>
 <!-- 			conteudo -->
 <section layout:fragment="conteudo">
-	
-		<div class="card">
-			<h5 class="card-header">Cadastro lista de ramais</h5>
-			<div class="card-body">
-				<h5 class="card-title">Special title treatment</h5>
-				<p class="card-text">With supporting text below as a natural
-					lead-in to additional content.</p>
-				<a href="#" class="btn btn-primary">Go somewhere</a>
-			</div>
+
+	<div class="card">
+		<h5 class="card-header">Cadastro lista de ramais</h5>
+		<div class="card-body">
+			<form>
+				<div class="form-row">
+					<div class="form-group col-md-6">
+						<label for="local">Local</label> <input type="text"
+							class="form-control" id="local" placeholder="Nome do local:">
+					</div>
+					<div class="form-group col-md-6">
+						<label for="nome">Nome</label> <input type="text"
+							class="form-control" id="nome"
+							placeholder="Nome do responsável pelo setor:">
+					</div>
+				</div>
+				<div class="form-row ">
+					<div class="form-group col-md-6">
+						<label for="ramal">Ramal</label> <input type="number"
+							class="form-control" id="ramal" placeholder="Número do ramal:">
+					</div>
+					<div class="form-group col-md-6">
+						<label for="telefone">Telefone</label> <input type="number"
+							class="form-control" id="telefone" placeholder="Número do telefone:">
+					</div>
+				</div>
+				<div class="form-row">
+					<div class="form-group col-md-6">
+						<label for="unidade">Unidade</label> <select id="unidade"
+							class="form-control">
+							<option selected>Unidade</option>
+							<option>Educação</option>
+							<option>Saúde</option>
+							<option>Social</option>
+						</select>
+					</div>
+					<div class="form-group col-md-6">
+						<label for="setor">Setor</label> <select id="setor"
+							class="form-control">
+							<option selected>Setor</option>
+							<option>Tributação</option>
+							<option>RG</option>
+							<option>Engenharia</option>
+						</select>
+					</div>
+				</div>
+				<button type="submit" class="btn btn-primary">Salvar</button>
+			</form>
 		</div>
-	
+	</div>
+
 </section>
 
 <!-- 			/conteudo -->

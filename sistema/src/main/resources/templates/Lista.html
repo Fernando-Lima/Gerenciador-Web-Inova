@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html layout:decorator="LayoutPadrao"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Pesquisa de Títlos</title>
+</head>
+<!-- 			conteudo -->
+<section layout:fragment="conteudo">
+
+	<div class="card">
+		<h5 class="card-header">Lista de ramais</h5>
+		<div class="card-body">
+			<a th:href="@{/admin/lista/novo}" class="btn btn-primary">Adicionar</a>
+		</div>
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th scope="col">Local</th>
+					<th scope="col">Ramal</th>
+					<th scope="col">Número fixo</th>
+					<th scope="col">Descrição</th>
+					<th scope="col">Ação</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>Telefonista</td>
+					<td>200</td>
+					<td>3520-6500</td>
+					<td>Alda</td>
+					<td>#</td>
+				</tr>
+				<tr>
+					<td>Prefeito</td>
+					<td>201</td>
+					<td>3520-6501</td>
+					<td>Dorival</td>
+					<td>#</td>
+				</tr>
+				<tr>
+					<td>Junta Militar</td>
+					<td>202</td>
+					<td>3520-6502</td>
+					<td></td>
+					<td>#</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+</section>
+
+<!-- 			/conteudo -->
+</html>

@@ -9,6 +9,10 @@ public class ListaController {
 
 	@RequestMapping
 	public String lista(){
+		return "Lista";
+	}
+	@RequestMapping("/novo")
+	public String novo() {
 		return "CadastroLista";
 	}
 }

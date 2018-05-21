@@ -1,3 +1,10 @@
+.right {
+    float: right;
+}
+
+.left {
+    float: left;
+}
 .sidebar, .conteudo{	
 	padding-top: 48px;
 }
