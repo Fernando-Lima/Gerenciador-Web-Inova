@@ -1,4 +1,4 @@
-package com.telecomunicacao.inova.sistema;
+package com.telecomunicacao.inova.sistema.repositorio;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
