@@ -1,24 +1,18 @@
 package com.telecomunicacao.inova.sistema.modal;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-@Entity
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Uf {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long codigo;
-	private String nome;
+	private Long id;
 	private String sigla;
-	
-	public Long getCodigo() {
-		return codigo;
+	private String nome;
+	public Long getId() {
+		return id;
 	}
-	public void setCodigo(Long codigo) {
-		this.codigo = codigo;
+	public void setId(Long id) {
+		this.id = id;
 	}
 	public String getNome() {
 		return nome;
@@ -26,11 +20,17 @@ public class Uf {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	public String getSegla() {
+	public String getSigla() {
 		return sigla;
 	}
 	public void setSigla(String sigla) {
 		this.sigla = sigla;
 	}
+	@Override
+	public String toString() {
+		return "Uf [id=" + id + ", sigla=" + sigla + ", nome=" + nome + "]";
+	}
+	
+	
 	
 }

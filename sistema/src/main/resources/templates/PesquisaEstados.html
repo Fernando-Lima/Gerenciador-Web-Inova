@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html layout:decorator="LayoutPadrao"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Pesquisa de Estados</title>
+</head>
+<!-- 			conteudo -->
+<section layout:fragment="conteudo">
+	
+		<div class="card">
+			<h5 class="card-header">Estados</h5>
+			<div class="card-body">
+			<a href="#" class="btn btn-primary">Novo</a>
+				<table class="table table-bordered table-striped">
+					<thead>
+						<tr>
+							<th class="text-center col-md-1">Sigla</th>
+							<th class="col-md-2">Nome</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="uf: ${estados}">
+							<td th:text="${uf.sigla}"></td>
+							<td class="center" th:text="${uf.nome}"></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	
+</section>
+
+<!-- 			/conteudo -->
+</html>
