@@ -8,6 +8,10 @@
 </head>
 <!-- 			conteudo -->
 <section layout:fragment="conteudo">
+
+<div class="alert alert-danger" th:if="${!#strings.isEmpty(mensagem)}">
+	<p th:text = "${mensagem}"></p>
+</div>
 	
 		<div class="card">
 			<h5 class="card-header">Estados</h5>
