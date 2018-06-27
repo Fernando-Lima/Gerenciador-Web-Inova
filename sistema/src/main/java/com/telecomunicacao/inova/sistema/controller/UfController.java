@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.telecomunicacao.inova.sistema.error.Message;
 import com.telecomunicacao.inova.sistema.modal.Uf;
 import com.telecomunicacao.inova.sistema.service.ConectaWS;
 
@@ -23,14 +24,19 @@ public class UfController {
 	
 	@RequestMapping
 	public ModelAndView listar() {	
-
-		// metogo get retorna um List com lista de obejo
-		ResponseEntity<List<Uf>> estados = conectaWS.getRestTemplate().exchange("/uf",HttpMethod.GET, null,  
-				new ParameterizedTypeReference<List<Uf>>() {
-		});
+		 
 		ModelAndView mv = new ModelAndView("PesquisaEstados");
-		mv.addObject("estados", estados.getBody());
-		System.out.println("// metogo get retorna um List com lista de obejo >>>  "+estados.getBody());
+		try {
+			// metogo get retorna um List com lista de obejo
+			ResponseEntity<List<Uf>> estados = conectaWS.getRestTemplate().exchange("/uf",HttpMethod.GET, null,  
+					new ParameterizedTypeReference<List<Uf>>() {
+			});
+			mv.addObject("estados", estados.getBody());
+		} catch (Exception e) {
+			Message msg = new Message(404);
+			String message = msg.getMessage();
+			mv.addObject("mensagem", message);
+		}
 		return mv;
 	}
 	
