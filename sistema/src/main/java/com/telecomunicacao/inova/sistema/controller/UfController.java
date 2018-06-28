@@ -32,17 +32,19 @@ public class UfController {
 	//Listar estados
 	@RequestMapping
 	public ModelAndView listar() {
-		ModelAndView mv = new ModelAndView("PesquisaEstados");
+		ModelAndView mv;
 		try {
 			// metogo get retorna um List com lista de obejo
 			ResponseEntity<List<Uf>> estados = conectaWS.getRestTemplate().exchange("/uf",HttpMethod.GET, null,  
 					new ParameterizedTypeReference<List<Uf>>() {
 			});
+			mv = new ModelAndView("PesquisaEstados");
 			mv.addObject("estados", estados.getBody());
 		} catch (Exception e) {
-			Message msg = new Message(404);
-			String message = msg.getMessage();
-			mv.addObject("mensagem", "Servidor"+message);
+//			Message msg = new Message(404);
+//			String message = msg.getMessage();
+//			mv.addObject("mensagem", "Servidor"+message);
+			mv = new ModelAndView("404");
 		}
 		return mv;
 	}
@@ -75,7 +77,7 @@ public class UfController {
 			return "redirect:/estados/novo";
 		} catch (Exception e) {
 			e.printStackTrace();
+			return "404";
 		}
-		return "PesquisaEstados";
 	}
 }
