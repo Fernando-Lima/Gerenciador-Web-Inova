@@ -76,7 +76,6 @@ public class UfController {
 			attributes.addFlashAttribute("mensagem","Estado salvo com sucesso");
 			return "redirect:/estados/novo";
 		} catch (Exception e) {
-			e.printStackTrace();
 			return "404";
 		}
 	}
