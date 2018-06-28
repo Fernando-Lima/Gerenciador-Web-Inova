@@ -69,18 +69,11 @@ public class UfController {
 	public String salvar(Uf uf) {
 		System.out.println(uf);
 		try {
-			ResponseEntity<Uf> ufPost = conectaWS.getRestTemplate().exchange("/uf",HttpMethod.POST, new HttpEntity<>(uf,createJSONHeader()), Uf.class);
+			ResponseEntity<Uf> ufPost = conectaWS.getRestTemplate().exchange("/uf",HttpMethod.POST, new HttpEntity<>(uf,conectaWS.createJSONHeader()), Uf.class);
 			return "PesquisaEstados";
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return "PesquisaEstados";
 	}
-	
-	private static HttpHeaders createJSONHeader() {
-		HttpHeaders httpHeaders = new HttpHeaders();
-		httpHeaders.setContentType(MediaType.APPLICATION_JSON);
-		return httpHeaders;
-	}
-	
 }
