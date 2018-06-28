@@ -14,7 +14,7 @@ public class Message {
 		switch(numero) {
 			case 404:
 				System.out.println("Numero >> " + numero);
-				message = "Desculpe o transtorno, servidor em manutenção! " + numero; //quando não consegue se comunicar com o servidor;
+				message = " não encontrado, erro " + numero; //quando não consegue se comunicar com o servidor;
 				break;
 			case 2:
 				System.out.println("Numero >> " + numero);
