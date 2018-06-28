@@ -9,31 +9,44 @@
 <!-- 			conteudo -->
 <section layout:fragment="conteudo">
 
-<div class="alert alert-danger" th:if="${!#strings.isEmpty(mensagem)}">
-	<p th:text = "${mensagem}"></p>
-</div>
-	
-		<div class="card">
-			<h5 class="card-header">Estados</h5>
-			<div class="card-body">
-			<a href="#" class="btn btn-primary">Novo</a>
-				<table class="table table-bordered table-striped">
-					<thead>
-						<tr>
-							<th class="text-center col-md-1">Sigla</th>
-							<th class="col-md-2">Nome</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr th:each="uf: ${estados}">
-							<td th:text="${uf.sigla}"></td>
-							<td class="center" th:text="${uf.nome}"></td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
+	<div class="alert alert-danger" th:if="${!#strings.isEmpty(mensagem)}">
+		<p th:text="${mensagem}"></p>
+	</div>
+
+	<nav class="navbar navbar-light bg-light justify-content-between">
+		<form class="form-inline">
+			<input autofocus="autofocus" class="form-control mr-sm-2"
+				type="search" placeholder="Search" aria-label="Search">
+			<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+		</form>
+		<a th:href="@{/estados/novo}">
+			<button class="btn btn-outline-primary my-2 my-sm-0" href="/estados/novo">Novo</button>
+		</a>
+	</nav>
+	<div class="card">
+		<h5 class="card-header">Estados</h5>
+		<div class="card-body">
+			<table class="table table-bordered table-striped">
+				<thead>
+					<tr>
+						<th class="text-center col-md-1">Sigla</th>
+						<th class="col-md-2">Nome</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="uf: ${estados}">
+						<td th:text="${uf.sigla}"></td>
+						<td class="center" th:text="${uf.nome}"></td>
+					</tr>
+					<tr>
+						<td colspan="6" th:if="${#lists.isEmpty(estados)}">Nenhum
+							estado foi encontrado!</td>
+					</tr>
+				</tbody>
+			</table>
 		</div>
-	
+	</div>
+
 </section>
 
 <!-- 			/conteudo -->
