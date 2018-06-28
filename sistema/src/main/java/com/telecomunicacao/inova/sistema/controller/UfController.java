@@ -3,12 +3,18 @@ package com.telecomunicacao.inova.sistema.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.telecomunicacao.inova.sistema.error.Message;
@@ -22,9 +28,9 @@ public class UfController {
 	@Autowired
 	ConectaWS conectaWS;
 	
+	//Listar estados
 	@RequestMapping
-	public ModelAndView listar() {	
-		 
+	public ModelAndView listar() {
 		ModelAndView mv = new ModelAndView("PesquisaEstados");
 		try {
 			// metogo get retorna um List com lista de obejo
@@ -35,19 +41,46 @@ public class UfController {
 		} catch (Exception e) {
 			Message msg = new Message(404);
 			String message = msg.getMessage();
-			mv.addObject("mensagem", message);
+			mv.addObject("mensagem", "Servidor"+message);
 		}
 		return mv;
 	}
 	
+	//Buscar estado pelo codigo
 	@RequestMapping("{codigo}")
-	public ModelAndView buscarPorId(@PathVariable("codigo") Long codigo) {	
-
-		//metodo get retorna um objeto pelo codigo 
-		Uf uf = conectaWS.getRestTemplate().getForObject("/uf/{id}", Uf.class, codigo);
-		ModelAndView mv = new ModelAndView("PesquisaEstados");
-		mv.addObject("estados", uf);
-		System.out.println("// metogo get retorna um objeto >>>  "+uf);
+	public ModelAndView buscarPorId(@PathVariable("codigo") Long codigo) {
+			//metodo get retorna um objeto pelo codigo 
+			ModelAndView mv = new ModelAndView("PesquisaEstados");
+			Uf uf = conectaWS.getRestTemplate().getForObject("/uf/{id}", Uf.class, codigo);
+			mv.addObject("estados", uf);
 		return mv;
 	}
+	
+	//Abrir tela de cadastro de estado
+	@RequestMapping("/novo")
+	public ModelAndView novo() {
+		ModelAndView mv = new ModelAndView("cadastroUf");
+		mv.addObject(new Uf());
+		return mv;
+	}
+	
+	//Salvando o objeto
+	@RequestMapping(value="/salvar")
+	public String salvar(Uf uf) {
+		System.out.println(uf);
+		try {
+			ResponseEntity<Uf> ufPost = conectaWS.getRestTemplate().exchange("/uf",HttpMethod.POST, new HttpEntity<>(uf,createJSONHeader()), Uf.class);
+			return "PesquisaEstados";
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "PesquisaEstados";
+	}
+	
+	private static HttpHeaders createJSONHeader() {
+		HttpHeaders httpHeaders = new HttpHeaders();
+		httpHeaders.setContentType(MediaType.APPLICATION_JSON);
+		return httpHeaders;
+	}
+	
 }
