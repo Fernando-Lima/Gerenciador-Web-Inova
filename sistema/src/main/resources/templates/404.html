@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html layout:decorator="LayoutPadrao"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Cadastro de Estados</title>
+</head>
+<section layout:fragment="conteudo">
+	<div class="container body">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="error-template">
+                <h1>
+                    Oops!</h1>
+                <h2>
+                    404 Not Found</h2>
+                <div class="error-details">
+                    Desculpe, ocorreu um erro. Página não encontrada!
+                </div>
+                <div class="error-actions">
+                    <a th:href="@{/dashboard}" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-home"></span>
+                        Voltar ao início </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+</html>
