@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.telecomunicacao.inova.sistema.error.Message;
 import com.telecomunicacao.inova.sistema.modal.Uf;
@@ -66,11 +67,12 @@ public class UfController {
 	
 	//Salvando o objeto
 	@RequestMapping(value="/salvar")
-	public String salvar(Uf uf) {
+	public String salvar(Uf uf, RedirectAttributes attributes) {
 		System.out.println(uf);
 		try {
 			ResponseEntity<Uf> ufPost = conectaWS.getRestTemplate().exchange("/uf",HttpMethod.POST, new HttpEntity<>(uf,conectaWS.createJSONHeader()), Uf.class);
-			return "PesquisaEstados";
+			attributes.addFlashAttribute("mensagem","Estado salvo com sucesso");
+			return "redirect:/estados/novo";
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
