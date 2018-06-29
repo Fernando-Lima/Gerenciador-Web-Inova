@@ -20,31 +20,34 @@
 			<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
 		</form>
 		<a th:href="@{/estados/novo}">
-			<button class="btn btn-outline-primary my-2 my-sm-0" href="/estados/novo">Novo</button>
+			<button class="btn btn-outline-primary my-2 my-sm-0"
+				href="/estados/novo">Novo</button>
 		</a>
 	</nav>
 	<div class="card">
 		<h5 class="card-header">Estados</h5>
 		<div class="card-body">
-			<table class="table table-bordered table-striped">
+			<table class="table table-hover">
 				<thead>
 					<tr>
-						<th class="text-center col-md-1">Sigla</th>
-						<th class="col-md-2">Nome</th>
+						<th scope="col">#</th>
+						<th scope="col">Nome</th>
+						<th scope="col">Sigla</th>
+						<th scope="col" class="text-center">Opção</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr th:each="uf: ${estados}">
+						<td scope="row" th:text="${uf.codigo}"></td>
+						<td th:text="${uf.nome}"></td>
 						<td th:text="${uf.sigla}"></td>
-						<td class="center" th:text="${uf.nome}"></td>
-					</tr>
-					<tr>
-						<td colspan="6" th:if="${#lists.isEmpty(estados)}">Nenhum
-							estado foi encontrado!</td>
+						<td class="text-center"><a href="#" class="badge badge-primary">Editar</a>
+						<a href="#" class="badge badge-danger" data-target="#confirmacaoExclusaoModal" data-toggle="modal">Excluir</a></td>
 					</tr>
 				</tbody>
 			</table>
 		</div>
+		<div th:include="DialogConfirmaExclusao"></div>
 	</div>
 
 </section>
