@@ -6,8 +6,8 @@
 <div class="modal fade" id="confirmacaoExclusaoModal" tabindex="-1"
 	data-target="#Modal" data-keyboard="false" data-backdrop="static">
 	<div class="modal-dialog" role="document">
-		<form>
-		<input type="hidden" name="_method" value="DELETE" />
+		<form th:attr="data-url-base='/estados'" method="POST">
+		<input type="hidden" name="_method" value="DELETE"/>
 			<div class="modal-content">
 				<div class="modal-header">
 					<h5 class="modal-title">Você tem certeza?</h5>

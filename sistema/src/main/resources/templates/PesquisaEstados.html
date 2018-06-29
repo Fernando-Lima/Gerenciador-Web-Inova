@@ -8,10 +8,7 @@
 </head>
 <!-- 			conteudo -->
 <section layout:fragment="conteudo">
-
-	<div class="alert alert-danger" th:if="${!#strings.isEmpty(mensagem)}">
-		<p th:text="${mensagem}"></p>
-	</div>
+	<div th:include="MensagemGeral"></div>
 
 	<nav class="navbar navbar-light bg-light justify-content-between">
 		<form class="form-inline">
@@ -41,8 +38,10 @@
 						<td scope="row" th:text="${uf.codigo}"></td>
 						<td th:text="${uf.nome}"></td>
 						<td th:text="${uf.sigla}"></td>
-						<td class="text-center"><a href="#" class="badge badge-primary">Editar</a>
-						<a href="#" class="badge badge-danger" data-target="#confirmacaoExclusaoModal" data-toggle="modal">Excluir</a></td>
+						<td class="text-center">
+						<a href="#" class="badge badge-primary" th:href="@{/estados/{codigo}(codigo=${uf.codigo})}">Editar</a>
+						<a href="#" class="badge badge-danger" data-target="#confirmacaoExclusaoModal" 
+						data-toggle="modal" th:attr="data-codigo=${uf.codigo}, data-descricao=${uf.nome}" >Excluir</a></td>
 					</tr>
 				</tbody>
 			</table>
