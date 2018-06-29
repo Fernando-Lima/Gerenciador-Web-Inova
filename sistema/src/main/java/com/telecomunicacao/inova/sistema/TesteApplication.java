@@ -40,6 +40,8 @@ RestTemplate restTemplate = new RestTemplateBuilder().rootUri("https://aw-inova.
 		ResponseEntity<Uf> ufPost = restTemplate.exchange("/",HttpMethod.POST, new HttpEntity<>(estado,createJSONHeader()), Uf.class);
 		System.out.println("Metodo Post >>> " + ufPost);
 		
+		Uf estadoPost = restTemplate.postForObject("/", estado, Uf.class);
+		System.out.println(estadoPost);
 	}
 	
 	private static HttpHeaders createJSONHeader() {
