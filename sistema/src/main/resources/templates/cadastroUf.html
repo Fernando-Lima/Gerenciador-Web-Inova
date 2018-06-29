@@ -20,6 +20,7 @@
 				
 				<form method="POST"  th:action="@{/estados/salvar}" th:object="${uf}">
 				<div class="form-group">
+				<input th:field="*{codigo}" type="hidden"/>
 					<div class="form-row">
 						<div class="col">
 							<input type="text" class="form-control" placeholder="Nome" th:field="*{nome}">
