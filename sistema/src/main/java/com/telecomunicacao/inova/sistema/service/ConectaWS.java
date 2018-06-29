@@ -6,6 +6,8 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import com.telecomunicacao.inova.sistema.error.Message;
+
 @Service
 public class ConectaWS {
 	
@@ -13,8 +15,8 @@ public class ConectaWS {
 		RestTemplate restTemplate = new RestTemplateBuilder().rootUri("https://aw-inova.cfapps.io").build();
 		return restTemplate;
 	}
-
-	public static HttpHeaders createJSONHeader() {
+	
+	public HttpHeaders createJSONHeader() {
 		HttpHeaders httpHeaders = new HttpHeaders();
 		httpHeaders.setContentType(MediaType.APPLICATION_JSON);
 		return httpHeaders;
