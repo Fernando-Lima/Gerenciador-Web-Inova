@@ -5,14 +5,15 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Uf {
 
-	private Long id;
+	private Long codigo;
 	private String sigla;
 	private String nome;
-	public Long getId() {
-		return id;
+	
+	public Long getCodigo() {
+		return codigo;
 	}
-	public void setId(Long id) {
-		this.id = id;
+	public void setCodigo(Long codigo) {
+		this.codigo = codigo;
 	}
 	public String getNome() {
 		return nome;
@@ -28,7 +29,7 @@ public class Uf {
 	}
 	@Override
 	public String toString() {
-		return "Uf [id=" + id + ", sigla=" + sigla + ", nome=" + nome + "]";
+		return "Uf [codigo=" + codigo + ", sigla=" + sigla + ", nome=" + nome + "]";
 	}
 	
 	
