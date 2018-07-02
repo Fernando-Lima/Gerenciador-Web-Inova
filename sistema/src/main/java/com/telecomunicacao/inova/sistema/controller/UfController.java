@@ -31,6 +31,7 @@ public class UfController {
 		try {
 			List<Uf> estados = dao.listAll();
 			mv = new ModelAndView("PesquisaEstados");
+			System.out.println(estados);
 			mv.addObject("estados", estados);
 		} catch (Exception e) {
 			mv = new ModelAndView("404");
@@ -42,7 +43,7 @@ public class UfController {
 	@RequestMapping("{codigo}")
 	public ModelAndView buscarPorId(@PathVariable("codigo") Long codigo) {
 			ModelAndView mv = new ModelAndView("cadastroUf");
-			Uf uf = conectaWS.findById(codigo);
+			Uf uf = dao.buscar(Uf.class, codigo);
 			mv.addObject(uf);
 		return mv;
 	}
@@ -60,11 +61,11 @@ public class UfController {
 	public String salvar(Uf uf, RedirectAttributes attributes) {
 		try {
 			if(uf.getCodigo()== null) {
-				dao.salvar(uf);
+				dao.salvar(Uf.class,uf);
 				attributes.addFlashAttribute("mensagem","Estado "+uf.getNome() +" salvo com sucesso!");
 			}
 			else {
-				conectaWS.update(uf);
+				dao.atualizar(Uf.class, uf);
 				attributes.addFlashAttribute("mensagem","Estado "+uf.getNome() +" atualizado com sucesso!");
 			}
 			return "redirect:/estados/novo";
@@ -74,10 +75,11 @@ public class UfController {
 		}
 	}
 	
+	//Deleta o objeto pelo ID
 	@RequestMapping(value="{codigo}", method = RequestMethod.DELETE)
 	public String excluir(@PathVariable Long codigo, RedirectAttributes attributes) {
 		try {
-			conectaWS.delete(codigo);
+			dao.excluir(codigo);
 			attributes.addFlashAttribute("mensagem","Estado excluído com sucesso");
 		} catch (Exception e) {
 			e.printStackTrace();
