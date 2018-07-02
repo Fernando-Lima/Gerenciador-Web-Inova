@@ -17,7 +17,9 @@ import com.telecomunicacao.inova.sistema.service.UfDAO;
 @RequestMapping("/estados")
 public class UfController {
 	
-	@Autowired
+	private static String TAG = "/uf"; // Passa a url como parâmetro para para os métodos DAO 
+	
+	@Autowired // injeção de dependência
 	UfDAO<Uf> dao;
 	
 	//Listar estados
@@ -27,7 +29,6 @@ public class UfController {
 		try {
 			List<Uf> estados = dao.listAll();
 			mv = new ModelAndView("PesquisaEstados");
-			System.out.println(estados);
 			mv.addObject("estados", estados);
 		} catch (Exception e) {
 			mv = new ModelAndView("404");
@@ -39,7 +40,7 @@ public class UfController {
 	@RequestMapping("{codigo}")
 	public ModelAndView buscarPorId(@PathVariable("codigo") Long codigo) {
 			ModelAndView mv = new ModelAndView("cadastroUf");
-			Uf uf = dao.buscar(Uf.class, codigo);
+			Uf uf = dao.buscar(Uf.class, codigo, TAG);
 			mv.addObject(uf);
 		return mv;
 	}
@@ -57,11 +58,11 @@ public class UfController {
 	public String salvar(Uf uf, RedirectAttributes attributes) {
 		try {
 			if(uf.getCodigo()== null) {
-				dao.salvar(Uf.class,uf);
+				dao.salvar(Uf.class,uf, TAG);
 				attributes.addFlashAttribute("mensagem","Estado "+uf.getNome() +" salvo com sucesso!");
 			}
 			else {
-				dao.atualizar(Uf.class, uf);
+				dao.atualizar(Uf.class, uf, TAG);
 				attributes.addFlashAttribute("mensagem","Estado "+uf.getNome() +" atualizado com sucesso!");
 			}
 			return "redirect:/estados/novo";
@@ -75,7 +76,7 @@ public class UfController {
 	@RequestMapping(value="{codigo}", method = RequestMethod.DELETE)
 	public String excluir(@PathVariable Long codigo, RedirectAttributes attributes) {
 		try {
-			dao.excluir(codigo);
+			dao.excluir(codigo, TAG);
 			attributes.addFlashAttribute("mensagem","Estado excluído com sucesso");
 		} catch (Exception e) {
 			e.printStackTrace();

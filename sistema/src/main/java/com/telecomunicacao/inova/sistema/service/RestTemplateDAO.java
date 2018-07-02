@@ -21,22 +21,22 @@ public abstract class RestTemplateDAO<T extends MinhaEntidade> implements Generi
 	}
 
 	@Override
-	public void salvar(Class<T>classe, T entity) {
-		restTemplate.exchange("/uf", HttpMethod.POST, new HttpEntity<>(entity, createJSONHeader()), classe);
+	public void salvar(Class<T>classe, T entity, String url) {
+		restTemplate.exchange(url, HttpMethod.POST, new HttpEntity<>(entity, createJSONHeader()), classe);
 	}
 
-	public void excluir(Long codigo) {
-		restTemplate.delete("/uf/{id}",codigo);
+	public void excluir(Long codigo, String url) {
+		restTemplate.delete(url+"/{id}",codigo);
 	}
 
 	@Override
-	public T buscar(Class<T> classe, Long codigo) {
+	public T buscar(Class<T> classe, Long codigo, String url) {
 		// TODO Auto-generated method stub
-		return restTemplate.getForObject("/uf/{id}", classe, codigo);
+		return restTemplate.getForObject(url+"/{id}", classe, codigo);
 	}
 	
 	@Override
-	public void atualizar(Class<T> classe, T entity) {
-		restTemplate.exchange("/uf/{id}",HttpMethod.PUT, new HttpEntity<>(entity,createJSONHeader()), classe, entity.getCodigo());
+	public void atualizar(Class<T> classe, T entity, String url) {
+		restTemplate.exchange(url+"/{id}",HttpMethod.PUT, new HttpEntity<>(entity,createJSONHeader()), classe, entity.getCodigo());
 	}
 }
