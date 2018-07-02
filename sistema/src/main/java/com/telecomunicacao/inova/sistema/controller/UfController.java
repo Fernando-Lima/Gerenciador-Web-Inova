@@ -11,15 +11,11 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.telecomunicacao.inova.sistema.modal.Uf;
-import com.telecomunicacao.inova.sistema.service.ConectaWS;
 import com.telecomunicacao.inova.sistema.service.UfDAO;
 
 @Controller
 @RequestMapping("/estados")
 public class UfController {
-	
-	@Autowired
-	ConectaWS conectaWS;
 	
 	@Autowired
 	UfDAO<Uf> dao;
