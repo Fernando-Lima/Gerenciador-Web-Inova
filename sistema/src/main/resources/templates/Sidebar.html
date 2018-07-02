@@ -4,15 +4,36 @@
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
 <!-- 	sidebar -->
-	<ul class="nav flex-column">
-		<li class="nav-item"><a class="nav-link active" th:href="@{/dashboard}">Visão geral</a>
-		</li>
-		<li class="nav-item"><a class="nav-link text-secondary" th:href="@{/clientes}">Clientes</a></li>
-		<li class="nav-item"><a class="nav-link text-secondary" th:href="@{/estoque}">Estoque</a></li>
-		<li class="nav-item"><a class="nav-link text-secondary" th:href="@{/financeiro}">Financeiro</a></li>
-		<li class="nav-item"><a class="nav-link text-secondary" th:href="@{/cadastro}">Cadastro</a></li>
-		<li class="nav-item"><a class="nav-link text-secondary" th:href="@{/estados}">Estados</a></li>
-	</ul>
-
+<!-- 	<ul class="nav flex-column"> -->
+<!-- 		<li class="nav-item"><a class="nav-link active" th:href="@{/dashboard}">Visão geral</a></li> -->
+<!-- 		<li class="nav-item"><a class="nav-link text-secondary" th:href="@{/clientes}">Clientes</a></li> -->
+<!-- 		<li class="nav-item"><a class="nav-link text-secondary" th:href="@{/estoque}">Estoque</a></li> -->
+<!-- 		<li class="nav-item"><a class="nav-link text-secondary" th:href="@{/financeiro}">Financeiro</a></li> -->
+<!-- 		<li class="nav-item"><a class="nav-link text-secondary" th:href="@{/cadastro}">Cadastro</a></li> -->
+<!-- 		<li class="nav-item"><a class="nav-link text-secondary" th:href="@{/estados}">Estados</a></li> -->
+<!-- 	</ul> -->
 <!-- 		/sidebar -->
+
+<div id='cssmenu'>
+<ul>
+   <li><a class="nav-link active" th:href="@{/dashboard}">Visão geral</a></li>
+   <li class='has-sub'><a class="nav-link">Cadastro</a>
+      <ul>
+         <li><a class="nav-link " th:href="@{/clientes}">Clientes</a></li>
+         <li><a class="nav-link " th:href="@{/estados}">Estados</a></li>
+         <li><a class="nav-link " th:href="@{/municipio}">Municípios</a></li>
+         <li><a class="nav-link " th:href="@{/municipio}">Fornecedor</a></li>
+         <li class='has-sub'><a href='#'>Product 2</a>
+            <ul>
+               <li><a href='#'>Sub Product</a></li>
+               <li><a href='#'>Sub Product</a></li>
+            </ul>
+         </li>
+      </ul>
+   </li>
+   <li><a href='#'>About</a></li>
+   <li><a href='#'>Contact</a></li>
+</ul>
+</div>
+
 </html>
