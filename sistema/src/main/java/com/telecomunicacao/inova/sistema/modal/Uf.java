@@ -20,4 +20,9 @@ public class Uf extends MinhaEntidade{
 	public void setSigla(String sigla) {
 		this.sigla = sigla;
 	}
+	@Override
+	public String toString() {
+		return "Uf [sigla=" + sigla + ", nome=" + nome + "]";
+	}
+	
 }
