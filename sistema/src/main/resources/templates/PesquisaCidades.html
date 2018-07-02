@@ -4,7 +4,7 @@
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	xmlns:th="http://www.thymeleaf.org">
 <head>
-<title>Pesquisa de Estados</title>
+<title>Pesquisa de Cidades</title>
 </head>
 <!-- 			conteudo -->
 <section layout:fragment="conteudo">
@@ -16,39 +16,41 @@
 				type="search" placeholder="Search" aria-label="Search">
 			<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
 		</form>
-		<a th:href="@{/estados/novo}">
-			<button class="btn btn-outline-primary my-2 my-sm-0"
-				href="/estados/novo">Novo</button>
+		<a th:href="@{/cidades/novo}">
+			<button class="btn btn-outline-primary my-2 my-sm-0">Novo</button>
 		</a>
 	</nav>
 	<div class="card">
-		<h5 class="card-header">Estados</h5>
+		<h5 class="card-header">Cidades</h5>
 		<div class="card-body">
 			<table class="table table-hover">
 				<thead>
 					<tr>
 						<th scope="col">#</th>
 						<th scope="col">Nome</th>
-						<th scope="col">Sigla</th>
+						<th scope="col">CEP</th>
+						<th scope="col">População</th>
+						<th scope="col">Estado</th>
 						<th scope="col" class="text-center">Opção</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr th:each="uf: ${estados}">
-						<td scope="row" th:text="${uf.codigo}"></td>
-						<td th:text="${uf.nome}"></td>
-						<td th:text="${uf.sigla}"></td>
-						<td class="text-center"><a href="#"
-							class="badge badge-primary"
-							th:href="@{/estados/{codigo}(codigo=${uf.codigo})}">Editar</a> <a
-							href="#" class="badge badge-danger"
-							data-target="#confirmacaoExclusaoModal" data-toggle="modal"
-							th:attr="data-codigo=${uf.codigo}, data-descricao=${uf.nome}">Excluir</a></td>
+					<tr th:each="cidade: ${cidades}">
+						<td scope="row" th:text="${cidade.codigo}"></td>
+						<td th:text="${cidade.nome}"></td>
+						<td th:text="${cidade.cep}"></td>
+						<td th:text="${cidade.pupulacao}"></td>
+						<td th:text="${cidade.estado}"></td>
+						<td class="text-center">
+							<a href="#" class="badge badge-primary" th:href="@{/cidades/{codigo}(codigo=${cidade.codigo})}">Editar</a>
+							<a href="#" class="badge badge-danger" data-target="#confirmacaoExclusaoModal" 
+							data-toggle="modal" th:attr="data-codigo=${cidade.codigo}, data-descricao=${cidade.nome}" >Excluir</a>
+						</td>
 					</tr>
 					<tr>
-						<td colspan="6" th:if="${#lists.isEmpty(estados)}">Nenhum
-							estado foi encontrado</td>
-					</tr>
+									<td colspan="6" th:if="${#lists.isEmpty(cidades)}">Nenhuma
+										cidade foi encontrada</td>
+								</tr>
 				</tbody>
 			</table>
 		</div>
