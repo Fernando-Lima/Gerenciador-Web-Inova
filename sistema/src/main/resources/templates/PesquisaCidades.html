@@ -39,8 +39,7 @@
 						<td scope="row" th:text="${cidade.codigo}"></td>
 						<td th:text="${cidade.nome}"></td>
 						<td th:text="${cidade.cep}"></td>
-						<td th:text="${cidade.pupulacao}"></td>
-						<td th:text="${cidade.estado}"></td>
+						<td th:text="${cidade.populacao}"></td>
 						<td class="text-center">
 							<a href="#" class="badge badge-primary" th:href="@{/cidades/{codigo}(codigo=${cidade.codigo})}">Editar</a>
 							<a href="#" class="badge badge-danger" data-target="#confirmacaoExclusaoModal" 

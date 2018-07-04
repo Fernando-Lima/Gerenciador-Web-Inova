@@ -32,10 +32,11 @@ public class CidadeController {
 	public ModelAndView listar() {
 		ModelAndView mv;
 		try {
-			List<Cidade> cidades = dao.listAll();
+			List<Cidade> todasCidades = dao.listAll();
 			mv  = new ModelAndView("PesquisaCidades");
-			mv.addObject("cidade", cidades);
+			mv.addObject("cidades", todasCidades);
 		} catch (Exception e) {
+			e.printStackTrace();
 			mv = new ModelAndView("404");
 		}
 		return mv;
