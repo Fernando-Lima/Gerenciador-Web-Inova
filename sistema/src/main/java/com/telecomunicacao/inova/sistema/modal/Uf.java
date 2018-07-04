@@ -1,5 +1,6 @@
 package com.telecomunicacao.inova.sistema.modal;
 
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)

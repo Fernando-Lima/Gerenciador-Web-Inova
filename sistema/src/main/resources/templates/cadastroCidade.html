@@ -25,16 +25,16 @@
 
 							<div class="form-group col-md-6">
 								<label for="idNome">Nome:</label> <input type="text"
-									class="form-control" placeholder="Nome" name="nome" id="idNome">
+									class="form-control" placeholder="Nome" name="nome" id="idNome" required pattern="[a-z\s]+$">
 							</div>
 							<div class="form-group col-md-6">
 								<label for="idCep">Cep:</label> <input type="text"
-									class="form-control" placeholder="Cep" name="cep" id="idCep">
+									class="form-control" placeholder="Cep" name="cep" id="idCep" required pattern="[0-9]+$">
 							</div>
 							<div class="form-group col-md-6">
 								<label for="idPopulacao">População:</label> <input type="text"
 									class="form-control" placeholder="População" name="populacao"
-									id="idPopulacao">
+									id="idPopulacao" required pattern="[0-9]+$">
 							</div>
 							<div class="form-group col-md-6">
 								<label>Estado:</label> <select class="form-control"
