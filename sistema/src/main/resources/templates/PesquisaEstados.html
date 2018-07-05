@@ -43,7 +43,7 @@
 							th:href="@{/estados/{codigo}(codigo=${uf.codigo})}">Editar</a> <a
 							href="#" class="badge badge-danger"
 							data-target="#confirmacaoExclusaoModal" data-toggle="modal"
-							th:attr="data-codigo=${uf.codigo}, data-descricao=${uf.nome}">Excluir</a></td>
+							th:attr="data-codigo=${uf.codigo}, data-descricao=${uf.nome}, data-passaurl=${'estados/'}">Excluir</a></td>
 					</tr>
 					<tr>
 						<td colspan="6" th:if="${#lists.isEmpty(estados)}">Nenhum

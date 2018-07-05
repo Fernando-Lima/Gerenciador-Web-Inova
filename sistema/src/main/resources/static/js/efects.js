@@ -9,6 +9,8 @@ $('#confirmacaoExclusaoModal').on('show.bs.modal', function(event){
 	var button = $(event.relatedTarget);
 	var codigo = button.data('codigo');
 	var descricao = button.data('descricao');
+	var url = button.data('passaurl');
+	//alert(url).show;
 	
 	var modal = $(this);
 	var form = modal.find('form');
@@ -16,7 +18,7 @@ $('#confirmacaoExclusaoModal').on('show.bs.modal', function(event){
 	if(!action.endsWith('/')){
 		action += '/';
 	}
-	form.attr('action', action + codigo);
+	form.attr('action', action + url + codigo);
 	modal.find('.modal-body span').html('Tem certeza de deseja excluir <strong>' + descricao + '</strong> ?');
 });
 

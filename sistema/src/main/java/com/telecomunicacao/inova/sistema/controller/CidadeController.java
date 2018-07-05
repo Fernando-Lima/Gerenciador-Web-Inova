@@ -65,11 +65,11 @@ public class CidadeController {
 			try {
 				if(cidade.getCodigo()== null) {
 					dao.salvar(Cidade.class,cidade, TAG);
-					attributes.addFlashAttribute("mensagem","Estado "+cidade.getNome() +" salvo com sucesso!");
+					attributes.addFlashAttribute("mensagem","Cidade "+cidade.getNome() +" salvo com sucesso!");
 				}
 				else {
 					dao.atualizar(Cidade.class, cidade, TAG);
-					attributes.addFlashAttribute("mensagem","Estado "+cidade.getNome() +" atualizado com sucesso!");
+					attributes.addFlashAttribute("mensagem","Cidade "+cidade.getNome() +" atualizado com sucesso!");
 				}
 				return "redirect:/cidades/novo";
 			} catch (Exception e) {

@@ -43,7 +43,7 @@
 						<td class="text-center">
 							<a href="#" class="badge badge-primary" th:href="@{/cidades/{codigo}(codigo=${cidade.codigo})}">Editar</a>
 							<a href="#" class="badge badge-danger" data-target="#confirmacaoExclusaoModal" 
-							data-toggle="modal" th:attr="data-codigo=${cidade.codigo}, data-descricao=${cidade.nome}" >Excluir</a>
+							data-toggle="modal" th:attr="data-codigo=${cidade.codigo}, data-descricao=${cidade.nome}, data-passaurl=${'cidades/'}"  >Excluir</a>
 						</td>
 					</tr>
 					<tr>
