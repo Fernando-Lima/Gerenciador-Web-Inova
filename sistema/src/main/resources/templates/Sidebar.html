@@ -15,24 +15,30 @@
 <!-- 		/sidebar -->
 
 <div id='cssmenu'>
-<ul>
-   <li><a class="nav-link active" th:href="@{/dashboard}">Visão geral</a></li>
-   <li class='has-sub'><a class="nav-link">Cadastro</a>
-      <ul>
-         <li><a class="nav-link " th:href="@{/estados}">Estados</a></li>
-         <li><a class="nav-link " th:href="@{/cidades}">Municípios</a></li>
-         <li><a class="nav-link " th:href="@{/fornecedores}">Fornecedor</a></li>
-         <li class='has-sub'><a th:href="@{/clientes}">Clientes</a>
-            <ul>
-               <li><a href='#'>Unidade</a></li>
-               <li><a href='#'>Sub Product</a></li>
-            </ul>
-         </li>
-      </ul>
-   </li>
-   <li><a href='#'>About</a></li>
-   <li><a href='#'>Contact</a></li>
-</ul>
+	<ul>
+		<li><a class="nav-link active" th:href="@{/dashboard}">Visão
+				geral</a></li>
+		<li class='has-sub'><a class="nav-link">Cadastro</a>
+			<ul>
+				<li><a class="nav-link " th:href="@{/estados}">Estado</a></li>
+				<li><a class="nav-link " th:href="@{/cidades}">Cidade</a></li>
+				<li><a class="nav-link " th:href="@{/fornecedores}">Fornecedor</a></li>
+				<li class='has-sub'><a>Cliente</a>
+					<ul>
+						<li><a th:href="@{/clientes}">Lista de clientes</a></li>
+						<li><a th:href="@{/clientes/novo}">Novo cliente</a></li>
+						<li><a href='#'>Unidade</a></li>
+					</ul></li>
+				<li class='has-sub'><a>Empresa</a>
+					<ul>
+						<li><a th:href="@{/empresa/}">Lista de empresas</a></li>
+						<li><a th:href="@{/empresa/unidade}">Unidade</a></li>
+						<li><a th:href="@{/empresa/setor}">Setor</a></li>
+					</ul></li>
+			</ul></li>
+		<li><a href='#'>Sobre</a></li>
+		<li><a href='#'>Contato</a></li>
+	</ul>
 </div>
 
 </html>
