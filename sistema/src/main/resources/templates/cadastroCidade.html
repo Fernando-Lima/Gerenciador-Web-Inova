@@ -18,27 +18,27 @@
 					</ol>
 				</nav>
 
-				<form method="POST" th:action="@{/cidades/salvar}">
+				<form method="POST" th:action="@{/cidades/salvar}" th:object="${cidade}">
 					<div class="form-group">
-						<input type="hidden" />
+						<input th:field="*{codigo}" type="hidden" />
 						<div class="form-row">
 
 							<div class="form-group col-md-6">
 								<label for="idNome">Nome:</label> <input type="text"
-									class="form-control" placeholder="Nome" name="nome" id="idNome" required>
+									class="form-control" placeholder="Nome" th:field="*{nome}" id="idNome" required>
 							</div>
 							<div class="form-group col-md-6">
 								<label for="idCep">Cep:</label> <input type="text"
-									class="form-control" placeholder="Cep" name="cep" id="idCep" required>
+									class="form-control" placeholder="Cep" th:field="*{cep}" id="idCep" required>
 							</div>
 							<div class="form-group col-md-6">
 								<label for="idPopulacao">População:</label> <input type="text"
-									class="form-control" placeholder="População" name="populacao"
+									class="form-control" placeholder="População" th:field="*{populacao}"
 									id="idPopulacao" required pattern="[0-9]+$">
 							</div>
 							<div class="form-group col-md-6">
 								<label>Estado:</label> <select class="form-control"
-									name="uf.codigo">
+									th:field="*{uf.codigo}">
 									<option th:each="uf : ${listaUf}" th:text="${uf.nome}"
 										th:value="${uf.codigo}"></option>
 								</select>

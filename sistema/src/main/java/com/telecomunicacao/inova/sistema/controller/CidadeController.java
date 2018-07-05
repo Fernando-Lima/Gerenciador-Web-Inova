@@ -21,19 +21,19 @@ import com.telecomunicacao.inova.sistema.service.UfDAO;
 public class CidadeController {
 
 	private static String TAG = "/cidade";
-	
+
 	@Autowired
 	CidadeDAO<Cidade> dao;
-	
+
 	@Autowired
 	UfDAO<Uf> ufDao;
-	
+
 	@RequestMapping
 	public ModelAndView listar() {
 		ModelAndView mv;
 		try {
 			List<Cidade> todasCidades = dao.listAll();
-			mv  = new ModelAndView("PesquisaCidades");
+			mv = new ModelAndView("PesquisaCidades");
 			mv.addObject("cidades", todasCidades);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -41,59 +41,58 @@ public class CidadeController {
 		}
 		return mv;
 	}
-	
-	//Buscar pelo codigo
-		@RequestMapping("{codigo}")
-		public ModelAndView buscarPorId(@PathVariable("codigo") Long codigo) {
-				ModelAndView mv = new ModelAndView("cadastroCidade");
-				Cidade cidade = dao.buscar(Cidade.class, codigo, TAG);
-				mv.addObject(cidade);
-			return mv;
-		}
-		
-		//Abrir tela de cadastro
-		@RequestMapping("/novo")
-		public ModelAndView novo() {
-			ModelAndView mv = new ModelAndView("cadastroCidade");
-			mv.addObject(new Uf());
-			return mv;
-		}
-		
-		//Salvando o objeto
-		@RequestMapping(value="/salvar")
-		public String salvar(Cidade cidade, RedirectAttributes attributes) {
-			try {
-				if(cidade.getCodigo()== null) {
-					dao.salvar(Cidade.class,cidade, TAG);
-					attributes.addFlashAttribute("mensagem","Cidade "+cidade.getNome() +" salvo com sucesso!");
-				}
-				else {
-					dao.atualizar(Cidade.class, cidade, TAG);
-					attributes.addFlashAttribute("mensagem","Cidade "+cidade.getNome() +" atualizado com sucesso!");
-				}
-				return "redirect:/cidades/novo";
-			} catch (Exception e) {
-				e.printStackTrace();
-				return "404";
+
+	// Buscar pelo codigo
+	@RequestMapping("{codigo}")
+	public ModelAndView buscarPorId(@PathVariable("codigo") Long codigo) {
+		ModelAndView mv = new ModelAndView("cadastroCidade");
+		Cidade cidade = dao.buscar(Cidade.class, codigo, TAG);
+		mv.addObject(cidade);
+		return mv;
+	}
+
+	// Abrir tela de cadastro
+	@RequestMapping("/novo")
+	public ModelAndView novo() {
+		ModelAndView mv = new ModelAndView("cadastroCidade");
+		mv.addObject(new Cidade());
+		return mv;
+	}
+
+	// Salvando o objeto
+	@RequestMapping(value = "/salvar")
+	public String salvar(Cidade cidade, RedirectAttributes attributes) {
+		try {
+			if (cidade.getCodigo() == null) {
+				dao.salvar(Cidade.class, cidade, TAG);
+				attributes.addFlashAttribute("mensagem", "Cidade " + cidade.getNome() + " salvo com sucesso!");
+			} else {
+				dao.atualizar(Cidade.class, cidade, TAG);
+				attributes.addFlashAttribute("mensagem", "Cidade " + cidade.getNome() + " atualizado com sucesso!");
 			}
+			return "redirect:/cidades/novo";
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "404";
 		}
-		
-		//Deleta o objeto pelo ID
-		@RequestMapping(value="{codigo}", method = RequestMethod.DELETE)
-		public String excluir(@PathVariable Long codigo, RedirectAttributes attributes) {
-			try {
-				dao.excluir(codigo, TAG);
-				attributes.addFlashAttribute("mensagem","Cidade excluída com sucesso");
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			return "redirect:/cidades";
+	}
+
+	// Deleta o objeto pelo ID
+	@RequestMapping(value = "{codigo}", method = RequestMethod.DELETE)
+	public String excluir(@PathVariable Long codigo, RedirectAttributes attributes) {
+		try {
+			dao.excluir(codigo, TAG);
+			attributes.addFlashAttribute("mensagem", "Cidade excluída com sucesso");
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		
-		//metodo para montar o combo dinamicamente
-		@ModelAttribute("listaUf")
-		public List<Uf> listaUf(){
-			List<Uf> estados = ufDao.listAll();
-			return estados;
-		}
+		return "redirect:/cidades";
+	}
+
+	// metodo para montar o combo dinamicamente
+	@ModelAttribute("listaUf")
+	public List<Uf> listaUf() {
+		List<Uf> estados = ufDao.listAll();
+		return estados;
+	}
 }
