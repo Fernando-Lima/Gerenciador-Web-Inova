@@ -40,6 +40,7 @@
 						<td th:text="${cidade.nome}"></td>
 						<td th:text="${cidade.cep}"></td>
 						<td th:text="${cidade.populacao}"></td>
+						<td th:text="${cidade.uf.nome}"></td>
 						<td class="text-center">
 							<a href="#" class="badge badge-primary" th:href="@{/cidades/{codigo}(codigo=${cidade.codigo})}">Editar</a>
 							<a href="#" class="badge badge-danger" data-target="#confirmacaoExclusaoModal" 
