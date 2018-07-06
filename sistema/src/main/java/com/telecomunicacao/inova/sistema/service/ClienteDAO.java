@@ -13,7 +13,7 @@ import com.telecomunicacao.inova.sistema.modal.Cliente;
 import com.telecomunicacao.inova.sistema.modal.MinhaEntidade;
 
 @Service
-public class CLienteDAO<T extends MinhaEntidade> extends RestTemplateDAO<T>{
+public class ClienteDAO<T extends MinhaEntidade> extends RestTemplateDAO<T>{
 
 	private RestTemplate restTemplate = new RestTemplateBuilder().rootUri("https://aw-inova.cfapps.io").build();
 
