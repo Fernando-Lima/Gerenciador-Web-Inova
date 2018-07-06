@@ -4,18 +4,25 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.telecomunicacao.inova.sistema.modal.Cidade;
 import com.telecomunicacao.inova.sistema.modal.Cliente;
-import com.telecomunicacao.inova.sistema.service.CLienteDAO;
+import com.telecomunicacao.inova.sistema.modal.Uf;
+import com.telecomunicacao.inova.sistema.service.ClienteDAO;
+import com.telecomunicacao.inova.sistema.service.CidadeDAO;
 
 @Controller
 @RequestMapping("/clientes")
 public class ClienteController {
 
 	@Autowired
-	CLienteDAO<Cliente> clienteDao;
+	ClienteDAO<Cliente> clienteDao;
+	
+	@Autowired
+	CidadeDAO<Cidade> cidadeDao;
 	
 	@RequestMapping
 	public ModelAndView listar() {
@@ -30,4 +37,18 @@ public class ClienteController {
 		}
 		return mv;
 	}
+	
+	@RequestMapping("/novo")
+	public ModelAndView novo() {
+		ModelAndView mv = new ModelAndView("cadastroCliente");
+		mv.addObject(new Cliente());
+		return mv;
+	}
+	
+	// metodo para montar o combo dinamicamente
+		@ModelAttribute("listaCidade")
+		public List<Cidade> listaCidade() {
+			List<Cidade> cidades = cidadeDao.listAll();
+			return cidades;
+		}
 }
