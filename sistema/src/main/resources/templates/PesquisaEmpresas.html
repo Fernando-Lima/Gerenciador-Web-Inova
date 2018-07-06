@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html layout:decorator="LayoutPadrao"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Pesquisa de Empresas</title>
+</head>
+<!-- 			conteudo -->
+<section layout:fragment="conteudo">
+	<div th:include="MensagemGeral"></div>
+
+	<nav class="navbar navbar-light bg-light justify-content-between">
+		<form class="form-inline">
+			<input autofocus="autofocus" class="form-control mr-sm-2"
+				type="search" placeholder="Search" aria-label="Search">
+			<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+		</form>
+		<a th:href="@{/empresas/novo}">
+			<button class="btn btn-outline-primary my-2 my-sm-0">Novo</button>
+		</a>
+	</nav>
+	<div class="card">
+		<h5 class="card-header">Empresas</h5>
+		<div class="card-body">
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th scope="col">#</th>
+						<th scope="col">Nome</th>
+						<th scope="col">CNPJ</th>
+						<th scope="col">Cidade</th>
+						<th scope="col" class="text-center">Opção</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="empresa: ${empresas}">
+						<td scope="row" th:text="${empresa.codigo}"></td>
+						<td th:text="${empresa.nome}"></td>
+						<td th:text="${empresa.cnpj}"></td>
+						<td th:text="${empresa.cidade.nome}"></td>
+						<td class="text-center">
+							<a href="#" class="badge badge-primary" th:href="@{/empresa/{codigo}(codigo=${empresa.codigo})}">Editar</a>
+							<a href="#" class="badge badge-danger" data-target="#confirmacaoExclusaoModal" 
+							data-toggle="modal" th:attr="data-codigo=${empresa.codigo}, data-descricao=${empresa.nome}, data-passaurl=${'empresas/'}"  >Excluir</a>
+						</td>
+					</tr>
+					<tr>
+									<td colspan="6" th:if="${#lists.isEmpty(empresas)}">Nenhuma
+										cidade foi encontrada</td>
+								</tr>
+				</tbody>
+			</table>
+		</div>
+		<div th:include="DialogConfirmaExclusao"></div>
+	</div>
+
+</section>
+
+<!-- 			/conteudo -->
+</html>
