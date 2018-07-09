@@ -13,6 +13,8 @@ public class Cliente extends MinhaEntidade{
 	private Integer cnpj;
 	private String endereco;
 	private Cidade cidade;
+	private SituacaoCliente situacao;
+	
 	public String getNome() {
 		return nome;
 	}
@@ -67,11 +69,17 @@ public class Cliente extends MinhaEntidade{
 	public void setCidade(Cidade cidade) {
 		this.cidade = cidade;
 	}
+	public SituacaoCliente getSituacao() {
+		return situacao;
+	}
+	public void setSituacao(SituacaoCliente situacao) {
+		this.situacao = situacao;
+	}
 	@Override
 	public String toString() {
 		return "Cliente [nome=" + nome + ", dataCadastro=" + dataCadastro + ", dataInicioContrato=" + dataInicioContrato
 				+ ", dataFinalContrato=" + dataFinalContrato + ", sla=" + sla + ", numeroAditivo=" + numeroAditivo
-				+ ", cnpj=" + cnpj + ", endereco=" + endereco + ", cidade=" + cidade + "]";
+				+ ", cnpj=" + cnpj + ", endereco=" + endereco + ", cidade=" + cidade + ", situacao=" + situacao + "]";
 	}
 	
 	
