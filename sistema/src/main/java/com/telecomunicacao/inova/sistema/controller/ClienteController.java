@@ -10,6 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.telecomunicacao.inova.sistema.modal.Cidade;
 import com.telecomunicacao.inova.sistema.modal.Cliente;
+import com.telecomunicacao.inova.sistema.modal.SituacaoCliente;
 import com.telecomunicacao.inova.sistema.modal.Uf;
 import com.telecomunicacao.inova.sistema.service.ClienteDAO;
 import com.telecomunicacao.inova.sistema.service.CidadeDAO;
@@ -50,5 +51,11 @@ public class ClienteController {
 		public List<Cidade> listaCidade() {
 			List<Cidade> cidades = cidadeDao.listAll();
 			return cidades;
+		}
+		
+		@ModelAttribute("listaSituacaoCliente")
+		public List<SituacaoCliente> situacao(){
+			List<SituacaoCliente> lista = clienteDao.listaSituacao();
+			return lista;
 		}
 }
