@@ -5,7 +5,7 @@ import java.util.Date;
 public class Cliente extends MinhaEntidade{
 
 	private String nome;
-	private Date dataCadastro;
+	private Date data;
 	private Date dataInicioContrato;
 	private Date dataFinalContrato;
 	private Date sla;
@@ -13,7 +13,7 @@ public class Cliente extends MinhaEntidade{
 	private Integer cnpj;
 	private String endereco;
 	private Cidade cidade;
-	private SituacaoCliente situacao;
+	private SituacaoCliente situacaoCliente;
 	
 	public String getNome() {
 		return nome;
@@ -22,10 +22,10 @@ public class Cliente extends MinhaEntidade{
 		this.nome = nome;
 	}
 	public Date getDataCadastro() {
-		return dataCadastro;
+		return data;
 	}
 	public void setDataCadastro(Date dataCadastro) {
-		this.dataCadastro = dataCadastro;
+		this.data = dataCadastro;
 	}
 	public Date getDataInicioContrato() {
 		return dataInicioContrato;
@@ -70,16 +70,16 @@ public class Cliente extends MinhaEntidade{
 		this.cidade = cidade;
 	}
 	public SituacaoCliente getSituacao() {
-		return situacao;
+		return situacaoCliente;
 	}
-	public void setSituacao(SituacaoCliente situacao) {
-		this.situacao = situacao;
+	public void setSituacao(SituacaoCliente situacaoCliente) {
+		this.situacaoCliente = situacaoCliente;
 	}
 	@Override
 	public String toString() {
-		return "Cliente [nome=" + nome + ", dataCadastro=" + dataCadastro + ", dataInicioContrato=" + dataInicioContrato
+		return "Cliente [nome=" + nome + ", dataCadastro =" + data + ", dataInicioContrato=" + dataInicioContrato
 				+ ", dataFinalContrato=" + dataFinalContrato + ", sla=" + sla + ", numeroAditivo=" + numeroAditivo
-				+ ", cnpj=" + cnpj + ", endereco=" + endereco + ", cidade=" + cidade + ", situacao=" + situacao + "]";
+				+ ", cnpj=" + cnpj + ", endereco=" + endereco + ", cidade=" + cidade + ", situacaoCliente=" + situacaoCliente + "]";
 	}
 	
 	
