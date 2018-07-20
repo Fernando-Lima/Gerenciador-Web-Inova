@@ -2,18 +2,25 @@ package com.telecomunicacao.inova.sistema.modal;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class Cliente extends MinhaEntidade{
 
 	private String nome;
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm:ss", timezone="GMT-3")
 	private Date data;
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy", timezone="GMT-3")
 	private Date dataInicioContrato;
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy", timezone="GMT-3")
 	private Date dataFinalContrato;
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm:ss", timezone="GMT-3")
 	private Date sla;
 	private Integer numeroAditivo;
 	private Integer cnpj;
 	private String endereco;
 	private Cidade cidade;
-	private SituacaoCliente situacaoCliente;
+	private String situacao;
+	
 	
 	public String getNome() {
 		return nome;
@@ -21,17 +28,17 @@ public class Cliente extends MinhaEntidade{
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	public Date getDataCadastro() {
+	public Date getData() {
 		return data;
 	}
-	public void setDataCadastro(Date dataCadastro) {
-		this.data = dataCadastro;
+	public void setData(Date dataCadastro) {
+		this.data = new Date();
 	}
 	public Date getDataInicioContrato() {
 		return dataInicioContrato;
 	}
 	public void setDataInicioContrato(Date dataInicioContrato) {
-		this.dataInicioContrato = dataInicioContrato;
+		this.dataInicioContrato = null;
 	}
 	public Date getDataFinalContrato() {
 		return dataFinalContrato;
@@ -69,19 +76,17 @@ public class Cliente extends MinhaEntidade{
 	public void setCidade(Cidade cidade) {
 		this.cidade = cidade;
 	}
-	public SituacaoCliente getSituacao() {
-		return situacaoCliente;
+	public String getSituacao() {
+		return situacao;
 	}
-	public void setSituacao(SituacaoCliente situacaoCliente) {
-		this.situacaoCliente = situacaoCliente;
+	public void setSituacao(String situacao) {
+		this.situacao = situacao;
 	}
+	
 	@Override
 	public String toString() {
 		return "Cliente [nome=" + nome + ", dataCadastro =" + data + ", dataInicioContrato=" + dataInicioContrato
 				+ ", dataFinalContrato=" + dataFinalContrato + ", sla=" + sla + ", numeroAditivo=" + numeroAditivo
-				+ ", cnpj=" + cnpj + ", endereco=" + endereco + ", cidade=" + cidade + ", situacaoCliente=" + situacaoCliente + "]";
+				+ ", cnpj=" + cnpj + ", endereco=" + endereco + ", cidade=" + cidade + "]";
 	}
-	
-	
-	
 }

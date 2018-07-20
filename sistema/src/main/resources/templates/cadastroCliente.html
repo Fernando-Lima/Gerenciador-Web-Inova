@@ -31,19 +31,48 @@
 								<label for="idCnpj">CNPJ:</label> <input type="text"
 									class="form-control" placeholder="Cnpj" th:field="*{cnpj}" id="idCnpj" required>
 							</div>
-							<div class="form-group col-md-6">
+							<div class="form-group col-md-3">
+								<label for="idTelefone">Telefone:</label> <input type="text"
+									class="form-control" placeholder="Telefone" id="idTelefone" required>
 							</div>
-							<div class="form-group col-md-6">
+							<div class="form-group col-md-5">
+								<label for="idEmail">Email:</label> <input type="text"
+									class="form-control" placeholder="Email" id="idEmail" required>
+							</div>
+							<div class="form-group col-md-4">
 								<label>Cidade:</label> <select class="form-control"
 									th:field="*{cidade.codigo}">
-									<option th:each="cidade : ${listaCidade}" th:text="${cidade.nome}"
+									<option th:each="cidade : ${listaCidade}" th:text="${cidade.nome} + ' ' + ${cidade.uf.sigla}"
 										th:value="${cidade.codigo}"></option>
 								</select>
+							</div>
+							<div class="form-group col-md-12">
+								<label for="idEndereco">Endereço:</label> <input type="text"
+									class="form-control" placeholder="Endereço" id="idEndereco" th:field="*{endereco}" required>
+							</div>
+							<div class="form-group col-md-4">
+								<label>Situação:</label> <select class="form-control" th:field="*{situacao}"> 
+<!-- 									<option th:each="situacao: ${listaSituacao}" th:value="${situacao}" th:text="${situacao.descricao}"></option> -->
+										<option value="ATIVO">Ativo</option>
+										<option value="INATIVO">Inativo</option>
+								</select>
+							</div>
+							<div class="form-group col-md-2">
+								<label for="idAditivo">Aditivo:</label> <input type="text" 
+								class="form-control " placeholder="Número aditivo" id="idAditivo" th:field="*{numeroAditivo}" >
+							</div>
+							<div class="form-group col-md-2">
+								<label for="idDataInicio">Início contrato :</label> <input type="text"
+									class="form-control" placeholder="__/__/____" id="idDataInicio"  >
+							</div>
+							<div class="form-group col-md-2">
+								<label for="idDataFinal">Data de término :</label> <input type="text"
+									class="form-control " placeholder="__/__/____" id="idDataFinal" disabled>
 							</div>
 						</div>
 					</div>
 					<button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Salvar</button>
-					<a th:href="@{/estados}"><button
+					<a th:href="@{/clientes}"><button
 							class="btn btn-outline-danger my-2 my-sm-0" type="button">Cancelar</button></a>
 				</form>
 			</div>
