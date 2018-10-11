@@ -84,6 +84,7 @@ public class CidadeController {
 			dao.excluir(codigo, TAG);
 			attributes.addFlashAttribute("mensagem", "Cidade excluída com sucesso");
 		} catch (Exception e) {
+			attributes.addFlashAttribute("mensagemErro", "Erro ao excluir");
 			e.printStackTrace();
 		}
 		return "redirect:/cidades";

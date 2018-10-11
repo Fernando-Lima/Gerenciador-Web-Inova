@@ -82,6 +82,7 @@ public class UfController {
 			attributes.addFlashAttribute("mensagem","Estado excluído com sucesso");
 		} catch (Exception e) {
 			e.printStackTrace();
+			attributes.addFlashAttribute("mensagemErro","Erro ao excluir estado");
 		}
 		return "redirect:/estados";
 	}

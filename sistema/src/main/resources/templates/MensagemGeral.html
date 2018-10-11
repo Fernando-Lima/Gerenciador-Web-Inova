@@ -2,10 +2,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-	
-	<div class="alert alert-success alert-dismissible" role="alert" 
+
+<div class="alert alert-success alert-dismissible" role="alert"
 	th:if="${!#strings.isEmpty(mensagem)}">
-			<span th:text="${mensagem}"> mensagem generica</span>
-		</div>
+	<span th:text="${mensagem}"> mensagem generica</span>
+</div>
+<div class="alert alert-warning alert-dismissible" role="alert"
+	th:if="${!#strings.isEmpty(mensagemErro)}">
+	<span th:text="${mensagemErro}"> mensagem generica</span>
+</div>
 
 </html>
