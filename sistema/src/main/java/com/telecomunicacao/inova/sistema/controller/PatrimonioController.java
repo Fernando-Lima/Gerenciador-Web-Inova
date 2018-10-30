@@ -18,7 +18,7 @@ public class PatrimonioController {
 	PatrimonioDAO<Patrimonio> dao; 
 
 	@RequestMapping
-	public ModelAndView novo() {
+	public ModelAndView listarPatrimonios() {
 		ModelAndView mv;
 		try {
 			List<Patrimonio> todosPatrimonios = dao.listAll();
@@ -28,6 +28,14 @@ public class PatrimonioController {
 			e.printStackTrace();
 			mv = new ModelAndView("404");
 		}
+		return mv;
+	}
+	
+	@RequestMapping("/novo")
+	public ModelAndView  novo() {
+		ModelAndView mv;
+		mv = new ModelAndView("cadastroPatrimonio");
+		mv.addObject(new Patrimonio());
 		return mv;
 	}
 }

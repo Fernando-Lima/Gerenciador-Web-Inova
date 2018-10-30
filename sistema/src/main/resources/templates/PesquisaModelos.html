@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html layout:decorator="LayoutPadrao"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Pesquisa de Modelos de equipamentos</title>
+</head>
+<!-- 			conteudo -->
+<section layout:fragment="conteudo">
+	<div th:include="MensagemGeral"></div>
+
+	<nav class="navbar navbar-light bg-light justify-content-between">
+		<form class="form-inline">
+			<input autofocus="autofocus" class="form-control mr-sm-2"
+				type="search" placeholder="Search" aria-label="Search">
+			<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+		</form>
+		<a th:href="@{/modelos/novo}">
+			<button class="btn btn-outline-primary my-2 my-sm-0"
+				href="/modelos/novo">Novo</button>
+		</a>
+	</nav>
+	<div class="card">
+		<h5 class="card-header">Modelos</h5>
+		<div class="card-body">
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th scope="col">#</th>
+						<th scope="col">Nome</th>
+						<th scope="col" class="text-center">Opção</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="modelo: ${modelos}">
+						<td scope="row" th:text="${modelo.codigo}"></td>
+						<td th:text="${uf.modelo}"></td>
+						<td class="text-center"><a href="#"
+							class="badge badge-primary"
+							th:href="@{/modelos/{codigo}(codigo=${modelo.codigo})}">Editar</a> <a
+							href="#" class="badge badge-danger"
+							data-target="#confirmacaoExclusaoModal" data-toggle="modal"
+							th:attr="data-codigo=${modelo.codigo}, data-descricao=${modelo.nome}, data-passaurl=${'modelos/'}">Excluir</a></td>
+					</tr>
+					<tr>
+						<td colspan="6" th:if="${#lists.isEmpty(modelos)}">Nenhum
+							modelo foi encontrado</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div th:include="DialogConfirmaExclusao"></div>
+	</div>
+
+</section>
+
+<!-- 			/conteudo -->
+</html>

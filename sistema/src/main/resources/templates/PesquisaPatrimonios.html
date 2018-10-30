@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html layout:decorator="LayoutPadrao"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Pesquisa de Patrimônios</title>
+</head>
+<!-- 			conteudo -->
+<section layout:fragment="conteudo">
+	<div th:include="MensagemGeral"></div>
+
+	<nav class="navbar navbar-light bg-light justify-content-between">
+		<form class="form-inline">
+			<input autofocus="autofocus" class="form-control mr-sm-2"
+				type="search" placeholder="Search" aria-label="Search">
+			<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+		</form>
+		<a th:href="@{/patrimonios/novo}">
+			<button class="btn btn-outline-primary my-2 my-sm-0">Novo</button>
+		</a>
+	</nav>
+	<div class="card">
+		<h5 class="card-header">Patrimonios</h5>
+		<div class="card-body">
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th scope="col">#</th>
+						<th scope="col">Produto</th>
+						<th scope="col">Modelo</th>
+						<th scope="col">Patrimônio</th>
+						<th scope="col" class="text-center">Opção</th>
+					</tr>
+				</thead>
+				<tbody>
+<!-- 					<tr th:each="cidade: ${cidades}"> -->
+<!-- 						<td scope="row" th:text="${cidade.codigo}"></td> -->
+<!-- 						<td th:text="${cidade.nome}"></td> -->
+<!-- 						<td th:text="${cidade.cep}"></td> -->
+<!-- 						<td th:text="${cidade.populacao}"></td> -->
+<!-- 						<td th:text="${cidade.uf.nome}"></td> -->
+<!-- 						<td class="text-center"> -->
+<!-- 							<a href="#" class="badge badge-primary" th:href="@{/cidades/{codigo}(codigo=${cidade.codigo})}">Editar</a> -->
+<!-- 							<a href="#" class="badge badge-danger" data-target="#confirmacaoExclusaoModal"  -->
+<!-- 							data-toggle="modal" th:attr="data-codigo=${cidade.codigo}, data-descricao=${cidade.nome}, data-passaurl=${'cidades/'}"  >Excluir</a> -->
+<!-- 						</td> -->
+<!-- 					</tr> -->
+<!-- 					<tr> -->
+									<td colspan="6" th:if="${#lists.isEmpty(patrimonios)}">Nenhum
+										produto foi encontrado</td>
+								</tr>
+				</tbody>
+			</table>
+		</div>
+		<div th:include="DialogConfirmaExclusao"></div>
+	</div>
+
+</section>
+
+<!-- 			/conteudo -->
+</html>
