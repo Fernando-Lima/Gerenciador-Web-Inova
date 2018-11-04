@@ -34,22 +34,23 @@
 					</tr>
 				</thead>
 				<tbody>
-<!-- 					<tr th:each="cidade: ${cidades}"> -->
-<!-- 						<td scope="row" th:text="${cidade.codigo}"></td> -->
-<!-- 						<td th:text="${cidade.nome}"></td> -->
-<!-- 						<td th:text="${cidade.cep}"></td> -->
-<!-- 						<td th:text="${cidade.populacao}"></td> -->
-<!-- 						<td th:text="${cidade.uf.nome}"></td> -->
-<!-- 						<td class="text-center"> -->
-<!-- 							<a href="#" class="badge badge-primary" th:href="@{/cidades/{codigo}(codigo=${cidade.codigo})}">Editar</a> -->
-<!-- 							<a href="#" class="badge badge-danger" data-target="#confirmacaoExclusaoModal"  -->
-<!-- 							data-toggle="modal" th:attr="data-codigo=${cidade.codigo}, data-descricao=${cidade.nome}, data-passaurl=${'cidades/'}"  >Excluir</a> -->
-<!-- 						</td> -->
-<!-- 					</tr> -->
-<!-- 					<tr> -->
-									<td colspan="6" th:if="${#lists.isEmpty(patrimonios)}">Nenhum
-										produto foi encontrado</td>
-								</tr>
+					<tr th:each="patrimonio: ${patrimonios}">
+						<td scope="row" th:text="${patrimonio.codigo}"></td>
+						<td th:text="${patrimonio.nome}"></td>
+						<td th:text="${patrimonio.modelo.modelo}"></td>
+						<td th:text="${patrimonio.patrimonio}"></td>
+						<td class="text-center"><a href="#"
+							class="badge badge-primary"
+							th:href="@{/patrimonios/{codigo}(codigo=${patrimonio.codigo})}">Editar</a>
+							<a href="#" class="badge badge-danger"
+							data-target="#confirmacaoExclusaoModal" data-toggle="modal"
+							th:attr="data-codigo=${patrimonio.codigo}, data-descricao=${patrimonio.patrimonio}, data-passaurl=${'patrimonios/'}">Excluir</a>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="6" th:if="${#lists.isEmpty(patrimonios)}">Nenhum
+							produto foi encontrado</td>
+					</tr>
 				</tbody>
 			</table>
 		</div>

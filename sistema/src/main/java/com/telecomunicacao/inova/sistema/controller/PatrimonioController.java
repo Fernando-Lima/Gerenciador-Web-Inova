@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.telecomunicacao.inova.sistema.modal.Modelo;
 import com.telecomunicacao.inova.sistema.modal.Patrimonio;
@@ -17,9 +18,11 @@ import com.telecomunicacao.inova.sistema.service.PatrimonioDAO;
 @RequestMapping("/patrimonios")
 public class PatrimonioController {
 	
+	private static String TAG = "/produto";
+
 	@Autowired
 	PatrimonioDAO<Patrimonio> dao;
-	
+
 	@Autowired
 	ModeloDAO<Modelo> modeloDao;
 
@@ -36,18 +39,36 @@ public class PatrimonioController {
 		}
 		return mv;
 	}
-	
+
 	@RequestMapping("/novo")
-	public ModelAndView  novo() {
+	public ModelAndView novo() {
 		ModelAndView mv;
 		mv = new ModelAndView("cadastroPatrimonio");
 		mv.addObject(new Patrimonio());
 		return mv;
 	}
-	//Metodo para montar o combo dinamicamente
-		@ModelAttribute("listaModelo")
-		public List<Modelo> listarModelos(){
-			List<Modelo> modelos = modeloDao.listAll();
-			return modelos;
+
+	// Metodo para montar o combo dinamicamente
+	@ModelAttribute("listaModelo")
+	public List<Modelo> listarModelos() {
+		List<Modelo> modelos = modeloDao.listAll();
+		return modelos;
+	}
+	
+	@RequestMapping(value = "/salvar")
+	public String salvar(Patrimonio patrimonio, RedirectAttributes attributes) {
+		try {
+			if(patrimonio.getCodigo() == null) {
+				dao.salvar(Patrimonio.class, patrimonio, TAG);
+				attributes.addFlashAttribute("mensagem","Patrimônio "+ patrimonio.getNome() +" salvo com sucesso!");
+			}else {
+				dao.atualizar(Patrimonio.class, patrimonio, TAG);
+				attributes.addFlashAttribute("mensagem","Patrimonio "+patrimonio.getNome() +" atualizado com sucesso!");
+			}
+			return "redirect:/patrimonios/novo";
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "404";
 		}
+	}
 }
