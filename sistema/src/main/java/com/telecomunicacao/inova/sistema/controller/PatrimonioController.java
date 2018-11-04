@@ -5,7 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -70,5 +72,17 @@ public class PatrimonioController {
 			e.printStackTrace();
 			return "404";
 		}
+	}
+	
+	@RequestMapping(value="{codigo}", method=RequestMethod.DELETE)
+	public String delete(@PathVariable Long codigo, RedirectAttributes attributes) {
+		try {
+			dao.excluir(codigo, TAG);
+			attributes.addFlashAttribute("mensagem", "Patrimônio  escluído com sucesso!");
+		} catch (Exception e) {
+			e.printStackTrace();
+			attributes.addFlashAttribute("mensagemErro", "Erro ao excluir patrimônio");
+		}
+		return "redirect:/patrimonios";
 	}
 }
