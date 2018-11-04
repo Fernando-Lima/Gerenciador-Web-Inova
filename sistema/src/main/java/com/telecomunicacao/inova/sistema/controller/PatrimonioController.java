@@ -85,4 +85,13 @@ public class PatrimonioController {
 		}
 		return "redirect:/patrimonios";
 	}
+	
+	//Busca pelo codigo
+	@RequestMapping(value="{codigo}")
+	public ModelAndView findById(@PathVariable Long codigo) {
+		ModelAndView mv = new ModelAndView("cadastroPatrimonio");
+		Patrimonio patrimonio = dao.buscar(Patrimonio.class, codigo, TAG);
+		mv.addObject(patrimonio);
+		return mv;
+	}
 }
