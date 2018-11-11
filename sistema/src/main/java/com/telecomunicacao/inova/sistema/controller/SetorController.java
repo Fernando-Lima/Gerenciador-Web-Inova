@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.telecomunicacao.inova.sistema.modal.Empresa;
+import com.telecomunicacao.inova.sistema.modal.Unidade;
 import com.telecomunicacao.inova.sistema.modal.Setor;
 import com.telecomunicacao.inova.sistema.service.EmpresaDAO;
 import com.telecomunicacao.inova.sistema.service.SetorDAO;
@@ -25,7 +25,7 @@ public class SetorController {
 	SetorDAO<Setor> setorDao;
 	
 	@Autowired
-	EmpresaDAO<Empresa> empresaDao;
+	EmpresaDAO<Unidade> empresaDao;
 	
 	@RequestMapping
 	public ModelAndView listar() {
@@ -90,8 +90,8 @@ public class SetorController {
 	
 	//mota o combo dinamicamente
 	@ModelAttribute("listaEmpresa")
-	public List<Empresa> listarEmpresas(){
-		List<Empresa> empresas =  empresaDao.listAll();
+	public List<Unidade> listarEmpresas(){
+		List<Unidade> empresas =  empresaDao.listAll();
 		return empresas;
 	}
 }

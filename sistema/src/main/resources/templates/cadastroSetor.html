@@ -29,9 +29,9 @@
 							</div>
 							<div class="form-group col-md-6">
 								<label>Empresa:</label> <select class="form-control"
-									th:field="*{empresa.codigo}">
-									<option th:each="empresa : ${listaEmpresa}" th:text="${empresa.nome}"
-										th:value="${empresa.codigo}"></option>
+									th:field="*{unidade.codigo}">
+									<option th:each="unidade : ${listaEmpresa}" th:text="${unidade.nome}"
+										th:value="${unidade.codigo}"></option>
 								</select>
 							</div>
 						</div>

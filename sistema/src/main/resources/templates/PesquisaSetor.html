@@ -36,17 +36,17 @@
 					<tr th:each="setor: ${setores}">
 						<td scope="row" th:text="${setor.codigo}"></td>
 						<td th:text="${setor.nome}"></td>
-						<td th:text="${setor.empresa.nome}"></td>
+						<td th:text="${setor.unidade.nome}"></td>
 						<td class="text-center"><a href="#"
 							class="badge badge-primary"
 							th:href="@{/setores/{codigo}(codigo=${setor.codigo})}">Editar</a>
 							<a href="#" class="badge badge-danger"
 							data-target="#confirmacaoExclusaoModal" data-toggle="modal"
-							th:attr="data-codigo=${modelo.codigo}, data-descricao=${setor.nome}, data-passaurl=${'setores/'}">Excluir</a></td>
+							th:attr="data-codigo=${setor.codigo}, data-descricao=${setor.nome}, data-passaurl=${'setores/'}">Excluir</a></td>
 					</tr>
 					<tr>
 						<td colspan="6" th:if="${#lists.isEmpty(setores)}">Nenhum
-							modelo foi encontrado</td>
+							Setor foi encontrado</td>
 					</tr>
 				</tbody>
 			</table>
