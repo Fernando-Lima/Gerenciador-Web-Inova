@@ -28,7 +28,7 @@
 					<tr>
 						<th scope="col">#</th>
 						<th scope="col">Nome</th>
-						<th scope="col">CNPJ</th>
+						<th scope="col">Endereço</th>
 						<th scope="col">Cidade</th>
 						<th scope="col" class="text-center">Opção</th>
 					</tr>
@@ -37,10 +37,10 @@
 					<tr th:each="empresa: ${empresas}">
 						<td scope="row" th:text="${empresa.codigo}"></td>
 						<td th:text="${empresa.nome}"></td>
-						<td th:text="${empresa.cnpj}"></td>
+						<td th:text="${empresa.endereco}"></td>
 						<td th:text="${empresa.cidade.nome}"></td>
 						<td class="text-center">
-							<a href="#" class="badge badge-primary" th:href="@{/empresa/{codigo}(codigo=${empresa.codigo})}">Editar</a>
+							<a href="#" class="badge badge-primary" th:href="@{/empresas/{codigo}(codigo=${empresa.codigo})}">Editar</a>
 							<a href="#" class="badge badge-danger" data-target="#confirmacaoExclusaoModal" 
 							data-toggle="modal" th:attr="data-codigo=${empresa.codigo}, data-descricao=${empresa.nome}, data-passaurl=${'empresas/'}"  >Excluir</a>
 						</td>

@@ -18,7 +18,7 @@ public class EmpresaDAO<T extends MinhaEntidade> extends RestTemplateDAO<T>{
 	private RestTemplate restTemplate = new RestTemplateBuilder().rootUri("https://aw-inova.cfapps.io").build();
 
 	public List<Empresa> listAll(){
-		ResponseEntity<List<Empresa>> entity = restTemplate.exchange("/empresa", HttpMethod.GET, null,
+		ResponseEntity<List<Empresa>> entity = restTemplate.exchange("/unidade", HttpMethod.GET, null,
 				new ParameterizedTypeReference<List<Empresa>>() {
 				});
 		return entity.getBody();

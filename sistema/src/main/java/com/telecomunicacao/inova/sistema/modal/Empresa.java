@@ -6,6 +6,13 @@ public class Empresa extends MinhaEntidade{
 	private Long cnpj;
 	private String endereco;
 	private Cidade cidade;
+	
+	public String getNome() {
+		return nome;
+	}
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
 	public Long getCnpj() {
 		return cnpj;
 	}
