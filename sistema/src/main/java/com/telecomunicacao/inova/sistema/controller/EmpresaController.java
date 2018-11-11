@@ -12,17 +12,17 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.telecomunicacao.inova.sistema.modal.Cidade;
-import com.telecomunicacao.inova.sistema.modal.Empresa;
+import com.telecomunicacao.inova.sistema.modal.Unidade;
 import com.telecomunicacao.inova.sistema.service.CidadeDAO;
 import com.telecomunicacao.inova.sistema.service.EmpresaDAO;
 
 @Controller
-@RequestMapping("/empresas")
+@RequestMapping("/unidades")
 public class EmpresaController {
 	private static final String TAG = "/unidade";
 
 	@Autowired
-	EmpresaDAO<Empresa> empresaDao;
+	EmpresaDAO<Unidade> empresaDao;
 
 	@Autowired
 	CidadeDAO<Cidade> cidadeDao;
@@ -31,9 +31,9 @@ public class EmpresaController {
 	public ModelAndView listar() {
 		ModelAndView mv;
 		try {
-			List<Empresa> empresas = empresaDao.listAll();
+			List<Unidade> empresas = empresaDao.listAll();
 			mv = new ModelAndView("PesquisaEmpresas");
-			mv.addObject("empresas", empresas);
+			mv.addObject("unidades", empresas);
 		} catch (Exception e) {
 			e.printStackTrace();
 			mv = new ModelAndView("404");
@@ -44,25 +44,24 @@ public class EmpresaController {
 	@RequestMapping("/novo")
 	public ModelAndView novo() {
 		ModelAndView mv = new ModelAndView("cadastroEmpresa");
-		mv.addObject(new Empresa());
+		mv.addObject(new Unidade());
 		return mv;
 	}
 
 	@RequestMapping("/salvar")
-	public String salvar(Empresa empresa, RedirectAttributes attributes) {
+	public String salvar(Unidade empresa, RedirectAttributes attributes) {
 		try {
 			if (empresa.getCodigo() == null) {
-				empresaDao.salvar(Empresa.class, empresa, TAG);
+				empresaDao.salvar(Unidade.class, empresa, TAG);
 				attributes.addFlashAttribute("mensagem", "Empresa " + empresa.getNome() + " salva com sucesso!");
 			} else {
-				empresaDao.atualizar(Empresa.class, empresa, TAG);
+				empresaDao.atualizar(Unidade.class, empresa, TAG);
 				attributes.addFlashAttribute("mensagem", "Empresa " + empresa.getNome() + " atualizada com sucesso!");
 			}
-			return "redirect:/empresas/novo";
+			return "redirect:/unidades/novo";
 		} catch (Exception e) {
 			e.printStackTrace();
-			attributes.addFlashAttribute("mensagemErro", "Erro ao salvar empresa " + empresa.getNome());
-			return "redirect:/empresas/novo";
+			return "404";
 		}
 	}
 	
@@ -70,7 +69,7 @@ public class EmpresaController {
 	@RequestMapping("{codigo}")
 	public ModelAndView fundById(@PathVariable Long codigo) {
 		ModelAndView mv = new ModelAndView("cadastroEmpresa");
-		Empresa empresa = empresaDao.buscar(Empresa.class, codigo, TAG);
+		Unidade empresa = empresaDao.buscar(Unidade.class, codigo, TAG);
 		mv.addObject(empresa);
 		return mv;
 	}
@@ -84,7 +83,7 @@ public class EmpresaController {
 			e.printStackTrace();
 			attributes.addFlashAttribute("mensagemErro", "erro ao excluir empresa!");
 		}
-		return "redirect:/empresas";
+		return "redirect:/unidades";
 	}
 	
 	// metodo para montar o combo dinamicamente

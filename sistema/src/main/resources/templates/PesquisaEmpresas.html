@@ -16,7 +16,7 @@
 				type="search" placeholder="Search" aria-label="Search">
 			<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
 		</form>
-		<a th:href="@{/empresas/novo}">
+		<a th:href="@{/unidades/novo}">
 			<button class="btn btn-outline-primary my-2 my-sm-0">Novo</button>
 		</a>
 	</nav>
@@ -34,20 +34,20 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr th:each="empresa: ${empresas}">
-						<td scope="row" th:text="${empresa.codigo}"></td>
-						<td th:text="${empresa.nome}"></td>
-						<td th:text="${empresa.endereco}"></td>
-						<td th:text="${empresa.cidade.nome}"></td>
+					<tr th:each="unidade: ${unidades}">
+						<td scope="row" th:text="${unidade.codigo}"></td>
+						<td th:text="${unidade.nome}"></td>
+						<td th:text="${unidade.endereco}"></td>
+						<td th:text="${unidade.cidade.nome}"></td>
 						<td class="text-center">
-							<a href="#" class="badge badge-primary" th:href="@{/empresas/{codigo}(codigo=${empresa.codigo})}">Editar</a>
+							<a href="#" class="badge badge-primary" th:href="@{/unidades/{codigo}(codigo=${unidade.codigo})}">Editar</a>
 							<a href="#" class="badge badge-danger" data-target="#confirmacaoExclusaoModal" 
-							data-toggle="modal" th:attr="data-codigo=${empresa.codigo}, data-descricao=${empresa.nome}, data-passaurl=${'empresas/'}"  >Excluir</a>
+							data-toggle="modal" th:attr="data-codigo=${unidade.codigo}, data-descricao=${unidade.nome}, data-passaurl=${'unidades/'}"  >Excluir</a>
 						</td>
 					</tr>
 					<tr>
-									<td colspan="6" th:if="${#lists.isEmpty(empresas)}">Nenhuma
-										cidade foi encontrada</td>
+									<td colspan="6" th:if="${#lists.isEmpty(unidades)}">Nenhuma
+										empresa foi encontrada</td>
 								</tr>
 				</tbody>
 			</table>

@@ -1,6 +1,6 @@
 package com.telecomunicacao.inova.sistema.modal;
 
-public class Empresa extends MinhaEntidade{
+public class Unidade extends MinhaEntidade{
 
 	private String nome;
 	private Long cnpj;
@@ -31,10 +31,4 @@ public class Empresa extends MinhaEntidade{
 	public void setCidade(Cidade cidade) {
 		this.cidade = cidade;
 	}
-	@Override
-	public String toString() {
-		return "Empresa [nome=" + nome + ", cnpj=" + cnpj + ", endereco=" + endereco + ", cidade=" + cidade + "]";
-	}
-	
-	
 }

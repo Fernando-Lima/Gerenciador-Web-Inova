@@ -13,12 +13,12 @@
 				<div th:include="MensagemGeral"></div>
 				<nav aria-label="breadcrumb">
 					<ol class="breadcrumb">
-						<li class="breadcrumb-item"><a th:href="@{/empresas}">Empresas</a></li>
+						<li class="breadcrumb-item"><a th:href="@{/unidades}">Empresas</a></li>
 						<li class="breadcrumb-item active" aria-current="page">Novo</li>
 					</ol>
 				</nav>
 
-				<form method="POST" th:action="@{/empresas/salvar}" th:object="${empresa}">
+				<form method="POST" th:action="@{/unidades/salvar}" th:object="${unidade}">
 					<div class="form-group">
 						<input th:field="*{codigo}" type="hidden" />
 						<div class="form-row">
@@ -41,7 +41,7 @@
 						</div>
 					</div>
 					<button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Salvar</button>
-					<a th:href="@{/empresas}"><button
+					<a th:href="@{/unidades}"><button
 							class="btn btn-outline-danger my-2 my-sm-0" type="button">Cancelar</button></a>
 				</form>
 			</div>
