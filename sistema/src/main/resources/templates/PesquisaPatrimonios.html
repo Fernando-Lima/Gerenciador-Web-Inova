@@ -30,6 +30,7 @@
 						<th scope="col">Produto</th>
 						<th scope="col">Modelo</th>
 						<th scope="col">Patrimônio</th>
+						<th scope="col">Status</th>
 						<th scope="col" class="text-center">Opção</th>
 					</tr>
 				</thead>
@@ -39,9 +40,13 @@
 						<td th:text="${patrimonio.nome}"></td>
 						<td th:text="${patrimonio.modelo.modelo}"></td>
 						<td th:text="${patrimonio.patrimonio}"></td>
+						<td th:text="Estoque"></td>
 						<td class="text-center"><a href="#"
 							class="badge badge-primary"
 							th:href="@{/patrimonios/{codigo}(codigo=${patrimonio.codigo})}">Editar</a>
+							<a href="#"
+							class="badge badge-warning"
+							th:href="@{/patrimonios/{codigo}(codigo=${patrimonio.codigo})}">Associar</a>
 							<a href="#" class="badge badge-danger"
 							data-target="#confirmacaoExclusaoModal" data-toggle="modal"
 							th:attr="data-codigo=${patrimonio.codigo}, data-descricao=${patrimonio.patrimonio}, data-passaurl=${'patrimonios/'}">Excluir</a>
