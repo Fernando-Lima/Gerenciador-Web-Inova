@@ -12,7 +12,7 @@ import com.telecomunicacao.inova.sistema.modal.MinhaEntidade;
 
 public abstract class RestTemplateDAO<T extends MinhaEntidade> implements GenericDAO<T> {
 
-	private RestTemplate restTemplate = new RestTemplateBuilder().rootUri("https://aw-inova.cfapps.io").build();
+	private RestTemplate restTemplate = new RestTemplateBuilder().rootUri("http://localhost:8081").build();
 
 	private HttpHeaders createJSONHeader() {
 		HttpHeaders httpHeaders = new HttpHeaders();

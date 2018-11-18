@@ -14,7 +14,7 @@ import com.telecomunicacao.inova.sistema.modal.Patrimonio;
 
 @Service
 public class PatrimonioDAO<T extends MinhaEntidade> extends RestTemplateDAO<T>{
-	private RestTemplate restTemplate = new RestTemplateBuilder().rootUri("https://aw-inova.cfapps.io").build();
+	private RestTemplate restTemplate = new RestTemplateBuilder().rootUri("http://localhost:8081").build();
 	
 	public List<Patrimonio> listAll(){
 		ResponseEntity<List<Patrimonio>> entity = restTemplate.exchange("/produto", HttpMethod.GET, null,

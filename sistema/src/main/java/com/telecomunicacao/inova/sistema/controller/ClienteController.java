@@ -1,12 +1,13 @@
 package com.telecomunicacao.inova.sistema.controller;
 
-import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -28,6 +29,7 @@ public class ClienteController {
 	@Autowired
 	CidadeDAO<Cidade> cidadeDao;
 
+	//Listar
 	@RequestMapping
 	public ModelAndView listar() {
 		ModelAndView mv;
@@ -42,6 +44,7 @@ public class ClienteController {
 		return mv;
 	}
 
+	//novo
 	@RequestMapping("/novo")
 	public ModelAndView novo() {
 		ModelAndView mv = new ModelAndView("cadastroCliente");
@@ -49,10 +52,9 @@ public class ClienteController {
 		return mv;
 	}
 
+	//salvar
 	@RequestMapping("/salvar")
 	public String salvar(Cliente cliente, RedirectAttributes attributes) {
-//		System.out.println("cliente >> " + cliente);
-//		return "404";
 		try {
 			if (cliente.getCodigo() == null) {
 				clienteDao.salvar(Cliente.class, cliente, TAG);
@@ -68,6 +70,26 @@ public class ClienteController {
 			e.printStackTrace();
 			return "404";
 		}
+	}
+	
+	@RequestMapping("{codigo}")
+	public ModelAndView buscarPorId(@PathVariable Long codigo) {
+		ModelAndView mv = new ModelAndView("cadastroCliente");
+		Cliente cliente = clienteDao.buscar(Cliente.class, codigo, TAG);
+		mv.addObject(cliente);
+		return mv;
+	}
+	
+	@RequestMapping(value = "{codigo}", method = RequestMethod.DELETE)
+	public String excluir(@PathVariable Long codigo, RedirectAttributes attributes) {
+		try {
+			clienteDao.excluir(codigo, TAG);
+			attributes.addFlashAttribute("mensagem", "Cliente excluído com sucesso!");
+		} catch (Exception e) {
+			e.printStackTrace();
+			attributes.addFlashAttribute("mensagemErro", "Erro ao excluir cliente");
+		}
+		return "redirect:/clientes";
 	}
 
 	// metodo para montar o combo dinamicamente

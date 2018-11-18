@@ -15,7 +15,7 @@ import com.telecomunicacao.inova.sistema.modal.MinhaEntidade;
 import com.telecomunicacao.inova.sistema.modal.Uf;
 @Service
 public class UfDAO<T extends MinhaEntidade> extends RestTemplateDAO<T>{
-	private RestTemplate restTemplate = new RestTemplateBuilder().rootUri("https://aw-inova.cfapps.io").build();
+	private RestTemplate restTemplate = new RestTemplateBuilder().rootUri("http://localhost:8081").build();
 
 	public List<Uf> listAll(){
 		ResponseEntity<List<Uf>> entity = restTemplate.exchange("/uf", HttpMethod.GET, null,

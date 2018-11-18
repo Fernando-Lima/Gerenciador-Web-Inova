@@ -15,7 +15,7 @@ import com.telecomunicacao.inova.sistema.modal.MinhaEntidade;
 @Service
 public class ClienteDAO<T extends MinhaEntidade> extends RestTemplateDAO<T>{
 
-	private RestTemplate restTemplate = new RestTemplateBuilder().rootUri("https://aw-inova.cfapps.io").build();
+	private RestTemplate restTemplate = new RestTemplateBuilder().rootUri("http://localhost:8081").build();
 
 	public List<Cliente> listAll(){
 		ResponseEntity<List<Cliente>> entity = restTemplate.exchange("/cliente", HttpMethod.GET, null,
