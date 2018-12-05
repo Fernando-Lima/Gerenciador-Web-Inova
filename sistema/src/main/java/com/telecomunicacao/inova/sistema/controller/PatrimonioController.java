@@ -13,8 +13,11 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.telecomunicacao.inova.sistema.modal.Modelo;
 import com.telecomunicacao.inova.sistema.modal.Patrimonio;
+import com.telecomunicacao.inova.sistema.modal.Setor;
+import com.telecomunicacao.inova.sistema.modal.Uf;
 import com.telecomunicacao.inova.sistema.service.ModeloDAO;
 import com.telecomunicacao.inova.sistema.service.PatrimonioDAO;
+import com.telecomunicacao.inova.sistema.service.SetorDAO;
 
 @Controller
 @RequestMapping("/patrimonios")
@@ -27,6 +30,9 @@ public class PatrimonioController {
 
 	@Autowired
 	ModeloDAO<Modelo> modeloDao;
+	
+	@Autowired
+	SetorDAO<Setor> setorDao;
 
 	@RequestMapping
 	public ModelAndView listarPatrimonios() {
@@ -94,4 +100,11 @@ public class PatrimonioController {
 		mv.addObject(patrimonio);
 		return mv;
 	}
+	
+	// metodo para montar o combo dinamicamente
+		@ModelAttribute("listaSetor")
+		public List<Setor> listaSetor() {
+			List<Setor> setores = setorDao.listAll();
+			return setores;
+		}
 }

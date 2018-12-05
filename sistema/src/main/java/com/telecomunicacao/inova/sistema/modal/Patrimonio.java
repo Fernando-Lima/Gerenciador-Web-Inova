@@ -7,6 +7,7 @@ public class Patrimonio extends MinhaEntidade{
 	private Modelo modelo;
 	private String mac;
 	private String ns; 
+	private Setor setor;
 	
 	public String getNome() {
 		return nome;
@@ -43,5 +44,11 @@ public class Patrimonio extends MinhaEntidade{
 	}
 	public void setNs(String ns) {
 		this.ns = ns;
+	}
+	public Setor getSetor() {
+		return setor;
+	}
+	public void setor(Setor setor) {
+		this.setor = setor;
 	}
 }
