@@ -24,7 +24,8 @@ public class Cliente extends MinhaEntidade{
 	private Cidade cidade;
 	@Enumerated(EnumType.STRING)
 	private Situacao situacao;
-	
+	private Long telefone;
+	private String email;
 	
 	public String getNome() {
 		return nome;
@@ -86,6 +87,19 @@ public class Cliente extends MinhaEntidade{
 	public void setSituacao(Situacao situacao) {
 		this.situacao = situacao;
 	}
+	public Long getTelefone() {
+		return telefone;
+	}
+	public void setTelefone(Long telefone) {
+		this.telefone = telefone;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
 	@Override
 	public String toString() {
 		return "Cliente [nome=" + nome + ", data=" + data + ", dataInicioContrato=" + dataInicioContrato
