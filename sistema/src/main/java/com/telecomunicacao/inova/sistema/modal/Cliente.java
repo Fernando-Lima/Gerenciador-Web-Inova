@@ -2,12 +2,15 @@ package com.telecomunicacao.inova.sistema.modal;
 
 import java.util.Date;
 
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class Cliente extends MinhaEntidade{
 
 	private String nome;
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm:ss", timezone="GMT-3")
+//	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm:ss", timezone="GMT-3")
 	private Date data;
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy", timezone="GMT-3")
 	private Date dataInicioContrato;
@@ -19,7 +22,8 @@ public class Cliente extends MinhaEntidade{
 	private Integer cnpj;
 	private String endereco;
 	private Cidade cidade;
-	private String situacao;
+	@Enumerated(EnumType.STRING)
+	private Situacao situacao;
 	
 	
 	public String getNome() {
@@ -38,7 +42,7 @@ public class Cliente extends MinhaEntidade{
 		return dataInicioContrato;
 	}
 	public void setDataInicioContrato(Date dataInicioContrato) {
-		this.dataInicioContrato = null;
+		this.dataInicioContrato = dataInicioContrato;
 	}
 	public Date getDataFinalContrato() {
 		return dataFinalContrato;
@@ -76,17 +80,18 @@ public class Cliente extends MinhaEntidade{
 	public void setCidade(Cidade cidade) {
 		this.cidade = cidade;
 	}
-	public String getSituacao() {
+	public Situacao getSituacao() {
 		return situacao;
 	}
-	public void setSituacao(String situacao) {
+	public void setSituacao(Situacao situacao) {
 		this.situacao = situacao;
 	}
-	
 	@Override
 	public String toString() {
-		return "Cliente [nome=" + nome + ", dataCadastro =" + data + ", dataInicioContrato=" + dataInicioContrato
+		return "Cliente [nome=" + nome + ", data=" + data + ", dataInicioContrato=" + dataInicioContrato
 				+ ", dataFinalContrato=" + dataFinalContrato + ", sla=" + sla + ", numeroAditivo=" + numeroAditivo
-				+ ", cnpj=" + cnpj + ", endereco=" + endereco + ", cidade=" + cidade + "]";
+				+ ", cnpj=" + cnpj + ", endereco=" + endereco + ", cidade=" + cidade + ", situacao=" + situacao + "]";
 	}
+	
+	
 }

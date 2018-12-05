@@ -52,9 +52,9 @@
 							</div>
 							<div class="form-group col-md-4">
 								<label>Situação:</label> <select class="form-control" th:field="*{situacao}"> 
-<!-- 									<option th:each="situacao: ${listaSituacao}" th:value="${situacao}" th:text="${situacao.descricao}"></option> -->
-										<option value="ATIVO">Ativo</option>
-										<option value="INATIVO">Inativo</option>
+									<option th:each="situacao: ${listaSituacao}" th:value="${situacao}" th:text="${situacao.descricao}"></option>
+<!-- 										<option value="ATIVO">Ativo</option> -->
+<!-- 										<option value="INATIVO">Inativo</option> -->
 								</select>
 							</div>
 							<div class="form-group col-md-2">

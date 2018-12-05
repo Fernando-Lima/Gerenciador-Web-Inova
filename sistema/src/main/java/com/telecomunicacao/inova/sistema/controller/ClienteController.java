@@ -1,5 +1,6 @@
 package com.telecomunicacao.inova.sistema.controller;
 
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,6 +63,7 @@ public class ClienteController {
 				System.out.println("cliente salvo>> " + cliente);
 			}else {
 				clienteDao.atualizar(Cliente.class, cliente, TAG);
+				
 				attributes.addFlashAttribute("mensagem", "Cliente " + cliente.getNome() + " atualizado com sucesso!");
 				System.out.println("cliente atualizado >> " + cliente);
 			}
@@ -99,8 +101,8 @@ public class ClienteController {
 		return cidades;
 	}
 
-//	@ModelAttribute("listaSituacao")
-//	public List<Situacao> listaSituacao() {
-//		return Arrays.asList(Situacao.values());
-//	}
+	@ModelAttribute("listaSituacao")
+	public List<Situacao> listaSituacao() {
+		return Arrays.asList(Situacao.values());
+	}
 }
