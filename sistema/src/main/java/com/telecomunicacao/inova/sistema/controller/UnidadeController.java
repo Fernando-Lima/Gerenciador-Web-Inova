@@ -17,7 +17,7 @@ import com.telecomunicacao.inova.sistema.service.ClienteDAO;
 import com.telecomunicacao.inova.sistema.service.UnidadeDAO;
 
 @Controller
-@RequestMapping("/unidade")
+@RequestMapping("/unidades")
 public class UnidadeController {
 	private static final String TAG = "/unidade";
 

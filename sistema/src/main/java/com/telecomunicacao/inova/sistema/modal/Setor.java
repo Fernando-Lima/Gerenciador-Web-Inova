@@ -3,7 +3,7 @@ package com.telecomunicacao.inova.sistema.modal;
 public class Setor extends MinhaEntidade{
 
 	private String nome;
-	private Unidade unidade;
+	private Empresa empresa;
 	
 	public String getNome() {
 		return nome;
@@ -11,10 +11,10 @@ public class Setor extends MinhaEntidade{
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	public Unidade getUnidade() {
-		return unidade;
+	public Empresa getEmpresa() {
+		return empresa;
 	}
-	public void setUnidade(Unidade unidade) {
-		this.unidade = unidade;
+	public void setEmpresa(Empresa empresa) {
+		this.empresa = empresa;
 	}
 }
