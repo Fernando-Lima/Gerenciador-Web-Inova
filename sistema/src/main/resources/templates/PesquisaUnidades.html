@@ -4,7 +4,7 @@
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	xmlns:th="http://www.thymeleaf.org">
 <head>
-<title>Pesquisa de Empresas</title>
+<title>Pesquisa de Unidades</title>
 </head>
 <!-- 			conteudo -->
 <section layout:fragment="conteudo">
@@ -16,39 +16,37 @@
 				type="search" placeholder="Search" aria-label="Search">
 			<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
 		</form>
-		<a th:href="@{/empresas/novo}">
+		<a th:href="@{/unidades/novo}">
 			<button class="btn btn-outline-primary my-2 my-sm-0">Novo</button>
 		</a>
 	</nav>
 	<div class="card">
-		<h5 class="card-header">Empresas</h5>
+		<h5 class="card-header">Unidades</h5>
 		<div class="card-body">
 			<table class="table table-hover">
 				<thead>
 					<tr>
 						<th scope="col">#</th>
 						<th scope="col">Nome</th>
-						<th scope="col">Endereço</th>
-						<th scope="col">Cidade</th>
+						<th scope="col">Cliente</th>
 						<th scope="col" class="text-center">Opção</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr th:each="empresa: ${empresas}">
-						<td scope="row" th:text="${empresa.codigo}"></td>
-						<td th:text="${empresa.nome}"></td>
-						<td th:text="${empresa.endereco}"></td>
-						<td th:text="${empresa.cidade.nome}"></td>
-						<td class="text-center">
-							<a href="#" class="badge badge-primary" th:href="@{/empresas/{codigo}(codigo=${empresa.codigo})}">Editar</a>
-							<a href="#" class="badge badge-danger" data-target="#confirmacaoExclusaoModal" 
-							data-toggle="modal" th:attr="data-codigo=${empresa.codigo}, data-descricao=${empresa.nome}, data-passaurl=${'empresas/'}"  >Excluir</a>
-						</td>
+					<tr th:each="unidade: ${unidades}">
+						<td scope="row" th:text="${unidade.codigo}"></td>
+						<td th:text="${unidade.nome}"></td>
+						<td th:text="${unidade.cliente.nome}"></td>
+						<td class="text-center"><a href="#"
+							class="badge badge-primary"
+							th:href="@{/unidades/{codigo}(codigo=${unidade.codigo})}">Editar</a>
+							<a href="#" class="badge badge-danger"
+							data-target="#confirmacaoExclusaoModal" data-toggle="modal"
+							th:attr="data-codigo=${unidade.codigo}, data-descricao=${unidade.nome}, data-passaurl=${'unidades/'}">Excluir</a></td>
 					</tr>
 					<tr>
-									<td colspan="6" th:if="${#lists.isEmpty(empresas)}">Nenhuma
-										empresa foi encontrada</td>
-								</tr>
+						<td colspan="6" th:if="${#lists.isEmpty(unidades)}">Nenhuma unidade foi encontrado</td>
+					</tr>
 				</tbody>
 			</table>
 		</div>

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import com.telecomunicacao.inova.sistema.modal.Unidade;
+import com.telecomunicacao.inova.sistema.modal.Empresa;
 import com.telecomunicacao.inova.sistema.modal.MinhaEntidade;
 
 @Service
@@ -17,9 +18,9 @@ public class EmpresaDAO<T extends MinhaEntidade> extends RestTemplateDAO<T>{
 	
 	private RestTemplate restTemplate = new RestTemplateBuilder().rootUri("http://localhost:8081").build();
 
-	public List<Unidade> listAll(){
-		ResponseEntity<List<Unidade>> entity = restTemplate.exchange("/unidade", HttpMethod.GET, null,
-				new ParameterizedTypeReference<List<Unidade>>() {
+	public List<Empresa> listAll(){
+		ResponseEntity<List<Empresa>> entity = restTemplate.exchange("/empresa", HttpMethod.GET, null,
+				new ParameterizedTypeReference<List<Empresa>>() {
 				});
 		return entity.getBody();
 	}

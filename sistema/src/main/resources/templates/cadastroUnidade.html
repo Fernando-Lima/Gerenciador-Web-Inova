@@ -4,7 +4,7 @@
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	xmlns:th="http://www.thymeleaf.org">
 <head>
-<title>Cadastro de Empresa</title>
+<title>Cadastro de Unidade</title>
 </head>
 <section layout:fragment="conteudo">
 	<div class="container-fluid">
@@ -13,12 +13,12 @@
 				<div th:include="MensagemGeral"></div>
 				<nav aria-label="breadcrumb">
 					<ol class="breadcrumb">
-						<li class="breadcrumb-item"><a th:href="@{/empresas}">Empresas</a></li>
+						<li class="breadcrumb-item"><a th:href="@{/unidades}">Unidade</a></li>
 						<li class="breadcrumb-item active" aria-current="page">Novo</li>
 					</ol>
 				</nav>
 
-				<form method="POST" th:action="@{/empresas/salvar}" th:object="${empresa}">
+				<form method="POST" th:action="@{/unidades/salvar}" th:object="${unidade}">
 					<div class="form-group">
 						<input th:field="*{codigo}" type="hidden" />
 						<div class="form-row">
@@ -28,20 +28,16 @@
 									class="form-control" placeholder="Nome" th:field="*{nome}" id="idNome" required>
 							</div>
 							<div class="form-group col-md-6">
-								<label for="idEndereco">Endereço:</label> <input type="text"
-									class="form-control" placeholder="Endereço" th:field="*{endereco}" id="idEndereco" required>
-							</div>
-							<div class="form-group col-md-6">
-								<label>Cidade:</label> <select class="form-control"
-									th:field="*{cidade.codigo}">
-									<option th:each="cidade : ${listaCidades}" th:text="${cidade.nome}"
-										th:value="${cidade.codigo}"></option>
+								<label>Cliente:</label> <select class="form-control"
+									th:field="*{cliente.codigo}">
+									<option th:each="cliente : ${listaClientes}" th:text="${cliente.nome}"
+										th:value="${cliente.codigo}"></option>
 								</select>
 							</div>
 						</div>
 					</div>
 					<button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Salvar</button>
-					<a th:href="@{/empresas}"><button
+					<a th:href="@{/unidades}"><button
 							class="btn btn-outline-danger my-2 my-sm-0" type="button">Cancelar</button></a>
 				</form>
 			</div>
