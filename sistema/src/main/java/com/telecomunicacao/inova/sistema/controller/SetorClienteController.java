@@ -4,22 +4,31 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.telecomunicacao.inova.sistema.modal.Cidade;
 import com.telecomunicacao.inova.sistema.modal.SetorCliente;
+import com.telecomunicacao.inova.sistema.modal.Unidade;
 import com.telecomunicacao.inova.sistema.service.SetorClienteDAO;
+import com.telecomunicacao.inova.sistema.service.UnidadeDAO;
 
 @Controller
-@RequestMapping("/setorCliente")
+@RequestMapping("/setorClientes")
 public class SetorClienteController {
 	private static String TAG = "/setorCliente";
 	
 	@Autowired
 	SetorClienteDAO<SetorCliente> setorClienteDao;
 	
+	@Autowired
+	UnidadeDAO<Unidade> unidadeDao;
+	
+	@RequestMapping
 	public ModelAndView listar() {
 		ModelAndView mv;
 		try {
@@ -67,17 +76,21 @@ public class SetorClienteController {
 		}
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	@RequestMapping(value = "{codigo}", method = RequestMethod.DELETE)
+	public String excluir(@PathVariable Long codigo, RedirectAttributes attributes) {
+		try {
+			setorClienteDao.excluir(codigo, TAG);
+			attributes.addFlashAttribute("mensagem","Setor excluído com sucesso!");
+		} catch (Exception e) {
+			e.printStackTrace();
+			attributes.addFlashAttribute("mensagemErro","Erro ao excluir setor!");
+		}
+		return "redirect:/setorClientes";
+	}
+	// metodo para montar o combo dinamicamente
+		@ModelAttribute("listaUnidades")
+		public List<Unidade> listaUnidade() {
+			List<Unidade> unidades = unidadeDao.listAll();
+			return unidades;
+		}
 }
