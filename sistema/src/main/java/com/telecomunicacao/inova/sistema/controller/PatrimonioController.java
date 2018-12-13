@@ -69,6 +69,7 @@ public class PatrimonioController {
 			if(patrimonio.getCodigo() == null) {
 				dao.salvar(Patrimonio.class, patrimonio, TAG);
 				attributes.addFlashAttribute("mensagem","Patrimônio "+ patrimonio.getNome() +" salvo com sucesso!");
+				
 			}else {
 				dao.atualizar(Patrimonio.class, patrimonio, TAG);
 				attributes.addFlashAttribute("mensagem","Patrimonio "+patrimonio.getNome() +" atualizado com sucesso!");

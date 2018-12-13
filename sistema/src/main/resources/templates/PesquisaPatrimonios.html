@@ -27,7 +27,8 @@
 				<thead>
 					<tr>
 						<th scope="col">#</th>
-						<th scope="col">Produto</th>
+						<th scope="col">Nome</th>
+						<th scope="col">MAC</th>
 						<th scope="col">Modelo</th>
 						<th scope="col">Patrimônio</th>
 						<th scope="col">Local</th>
@@ -38,9 +39,10 @@
 					<tr th:each="patrimonio: ${patrimonios}">
 						<td scope="row" th:text="${patrimonio.codigo}"></td>
 						<td th:text="${patrimonio.nome}"></td>
+						<td th:text="${patrimonio.mac}"></td>
 						<td th:text="${patrimonio.modelo.modelo}"></td>
 						<td th:text="${patrimonio.patrimonio}"></td>
-						<td th:text="Estoque"></td>
+						<td th:text="${patrimonio.setor.nome}"></td>
 						<td class="text-center"><a href="#"
 							class="badge badge-primary"
 							th:href="@{/patrimonios/{codigo}(codigo=${patrimonio.codigo})}">Editar</a>
