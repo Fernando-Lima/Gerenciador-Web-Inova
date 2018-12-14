@@ -1,13 +1,12 @@
 package com.telecomunicacao.inova.sistema.modal;
 
-import java.util.List;
 
 public class SetorCliente extends MinhaEntidade{
 
 	private String nome;
 	private Unidade unidade;
 	private Integer telefone;
-	private List<Ramal> ramal;
+	private Integer ramal;
 		
 	public String getNome() {
 		return nome;
@@ -27,10 +26,10 @@ public class SetorCliente extends MinhaEntidade{
 	public void setTelefone(Integer telefone) {
 		this.telefone = telefone;
 	}
-	public List<Ramal> getRamal() {
+	public Integer getRamal() {
 		return ramal;
 	}
-	public void setRamal(List<Ramal> ramal) {
+	public void setRamal(Integer ramal) {
 		this.ramal = ramal;
 	}
 	

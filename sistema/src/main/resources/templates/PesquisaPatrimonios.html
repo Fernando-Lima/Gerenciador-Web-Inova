@@ -11,34 +11,50 @@
 	<div th:include="MensagemGeral"></div>
 
 	<nav class="navbar navbar-light bg-light justify-content-between">
-		<form class="form-inline">
-			<input autofocus="autofocus" class="form-control mr-sm-2"
-				type="search" placeholder="Search" aria-label="Search">
-			<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-		</form>
+		
 		<a th:href="@{/patrimonios/novo}">
 			<button class="btn btn-outline-primary my-2 my-sm-0">Novo</button>
 		</a>
 	</nav>
-	<div class="card">
-		<h5 class="card-header">Patrimonios</h5>
-		<div class="card-body">
-			<table class="table table-hover">
-				<thead>
-					<tr>
-						<th scope="col">#</th>
-						<th scope="col">Nome</th>
-						<th scope="col">MAC</th>
-						<th scope="col">Modelo</th>
-						<th scope="col">Patrimônio</th>
-						<th scope="col">Local</th>
-						<th scope="col" class="text-center">Opção</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr th:each="patrimonio: ${patrimonios}">
-						<td scope="row" th:text="${patrimonio.codigo}"></td>
-						<td th:text="${patrimonio.nome}"></td>
+	<div id="content-wrapper">
+
+        <div class="container-fluid">
+
+          <!-- DataTables Example -->
+          <div class="card mb-3">
+            <div class="card-header">
+              <i class="fas fa-table"></i>
+              Patrimônios</div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-hover" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>Nome</th>
+                      <th>MAC</th>
+                      <th>Modelo</th>
+                      <th>Patrimônio</th>
+                      <th>Local</th>
+                      <th class="text-center">Opção</th>
+                    </tr>
+                  </thead>
+                  <tfoot>
+                    <tr>
+                     <th>#</th>
+                      <th>Nome</th>
+                      <th>MAC</th>
+                      <th>Modelo</th>
+                      <th>Patrimônio</th>
+                      <th>Local</th>
+                      <th class="text-center">Opção</th>
+                      
+                    </tr>
+                  </tfoot>
+                  <tbody>
+                    <tr th:each="patrimonio: ${patrimonios}" >
+                    <td th:text="${patrimonio.codigo}"></td>
+                      <td th:text="${patrimonio.nome}"></td>
 						<td th:text="${patrimonio.mac}"></td>
 						<td th:text="${patrimonio.modelo.modelo}"></td>
 						<td th:text="${patrimonio.patrimonio}"></td>
@@ -46,23 +62,40 @@
 						<td class="text-center"><a href="#"
 							class="badge badge-primary"
 							th:href="@{/patrimonios/{codigo}(codigo=${patrimonio.codigo})}">Editar</a>
-							<a href="#"
-							class="badge badge-warning"
-							th:href="@{/patrimonios/{codigo}(codigo=${patrimonio.codigo})}">Associar</a>
+<!-- 							<a href="#" -->
+<!-- 							class="badge badge-warning" -->
+<!-- 							th:href="@{/patrimonios/{codigo}(codigo=${patrimonio.codigo})}">Associar</a> -->
 							<a href="#" class="badge badge-danger"
 							data-target="#confirmacaoExclusaoModal" data-toggle="modal"
 							th:attr="data-codigo=${patrimonio.codigo}, data-descricao=${patrimonio.patrimonio}, data-passaurl=${'patrimonios/'}">Excluir</a>
 						</td>
-					</tr>
-					<tr>
-						<td colspan="6" th:if="${#lists.isEmpty(patrimonios)}">Nenhum
-							produto foi encontrado</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-		<div th:include="DialogConfirmaExclusao"></div>
-	</div>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div th:include="DialogConfirmaExclusao"></div>
+          </div>
+
+         
+
+        </div>
+        <!-- /.container-fluid -->
+
+        <!-- Sticky Footer -->
+        <footer class="sticky-footer">
+          <div class="container my-auto">
+            <div class="copyright text-center my-auto">
+              <span>Copyright © https://github.com/Fernando-Lima/Gerenciador-Web-Inova 2018</span>
+            </div>
+          </div>
+        </footer>
+
+      </div>
+      <!-- /.content-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
 
 </section>
 
