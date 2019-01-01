@@ -5,7 +5,7 @@ import java.util.Date;
 public class Patrimonio extends MinhaEntidade{
 	private String nome = "Telefone Ip";
 	private Long patrimonio;
-	private String descricao;
+	private String descricao = "Prefeitura Dois Irmãos";
 	private Modelo modelo;
 	private String mac;
 	private String ns; 
@@ -46,12 +46,7 @@ public class Patrimonio extends MinhaEntidade{
 		return ns;
 	}
 	public void setNs(String ns) {
-		if(ns == "") {
-			this.ns = null;
-		}else{
-			this.ns = ns;
-		}
-		
+		this.ns = ns;
 	}
 
 	

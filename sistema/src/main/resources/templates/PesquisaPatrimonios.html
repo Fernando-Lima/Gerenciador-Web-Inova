@@ -30,22 +30,22 @@
                 <table class="table table-hover" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
-                      <th>#</th>
                       <th>Nome</th>
                       <th>MAC</th>
                       <th>Modelo</th>
                       <th>Patrimônio</th>
+                      <th>NS</th>
                       <th>Local</th>
                       <th class="text-center">Opção</th>
                     </tr>
                   </thead>
                   <tfoot>
                     <tr>
-                     <th>#</th>
                       <th>Nome</th>
                       <th>MAC</th>
                       <th>Modelo</th>
                       <th>Patrimônio</th>
+                      <th>NS</th>
                       <th>Local</th>
                       <th class="text-center">Opção</th>
                       
@@ -53,11 +53,11 @@
                   </tfoot>
                   <tbody>
                     <tr th:each="patrimonio: ${patrimonios}" >
-                    <td th:text="${patrimonio.codigo}"></td>
                       <td th:text="${patrimonio.nome}"></td>
 						<td th:text="${patrimonio.mac}"></td>
 						<td th:text="${patrimonio.modelo.modelo}"></td>
 						<td th:text="${patrimonio.patrimonio}"></td>
+						<td th:text="${patrimonio.ns}"></td>
 						<td th:text="${patrimonio.setor.nome}"></td>
 						<td class="text-center"><a href="#"
 							class="badge badge-primary"
