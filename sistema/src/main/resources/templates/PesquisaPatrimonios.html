@@ -11,91 +11,95 @@
 	<div th:include="MensagemGeral"></div>
 
 	<nav class="navbar navbar-light bg-light justify-content-between">
-		
+
 		<a th:href="@{/patrimonios/novo}">
 			<button class="btn btn-outline-primary my-2 my-sm-0">Novo</button>
 		</a>
 	</nav>
 	<div id="content-wrapper">
 
-        <div class="container-fluid">
+		<div class="container-fluid">
 
-          <!-- DataTables Example -->
-          <div class="card mb-3">
-            <div class="card-header">
-              <i class="fas fa-table"></i>
-              Patrimônios</div>
-            <div class="card-body">
-              <div class="table-responsive">
-                <table class="table table-hover" id="dataTable" width="100%" cellspacing="0">
-                  <thead>
-                    <tr>
-                      <th>Nome</th>
-                      <th>MAC</th>
-                      <th>Modelo</th>
-                      <th>Patrimônio</th>
-                      <th>NS</th>
-                      <th>Local</th>
-                      <th class="text-center">Opção</th>
-                    </tr>
-                  </thead>
-                  <tfoot>
-                    <tr>
-                      <th>Nome</th>
-                      <th>MAC</th>
-                      <th>Modelo</th>
-                      <th>Patrimônio</th>
-                      <th>NS</th>
-                      <th>Local</th>
-                      <th class="text-center">Opção</th>
-                      
-                    </tr>
-                  </tfoot>
-                  <tbody>
-                    <tr th:each="patrimonio: ${patrimonios}" >
-                      <td th:text="${patrimonio.nome}"></td>
-						<td th:text="${patrimonio.mac}"></td>
-						<td th:text="${patrimonio.modelo.modelo}"></td>
-						<td th:text="${patrimonio.patrimonio}"></td>
-						<td th:text="${patrimonio.ns}"></td>
-						<td th:text="${patrimonio.setor.nome}"></td>
-						<td class="text-center"><a href="#"
-							class="badge badge-primary"
-							th:href="@{/patrimonios/{codigo}(codigo=${patrimonio.codigo})}">Editar</a>
-<!-- 							<a href="#" -->
-<!-- 							class="badge badge-warning" -->
-<!-- 							th:href="@{/patrimonios/{codigo}(codigo=${patrimonio.codigo})}">Associar</a> -->
-							<a href="#" class="badge badge-danger"
-							data-target="#confirmacaoExclusaoModal" data-toggle="modal"
-							th:attr="data-codigo=${patrimonio.codigo}, data-descricao=${patrimonio.patrimonio}, data-passaurl=${'patrimonios/'}">Excluir</a>
-						</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-            <div th:include="DialogConfirmaExclusao"></div>
-          </div>
+			<!-- DataTables Example -->
+			<div class="card mb-3">
+				<div class="card-header">
+					<i class="fas fa-table"></i> Patrimônios
+				</div>
+				<div class="card-body">
+					<div class="table-responsive">
+						<table class="table table-hover" id="dataTable" width="100%"
+							cellspacing="0">
+							<thead>
+								<tr>
+									<th>Nome</th>
+									<th>MAC</th>
+									<th>Modelo</th>
+									<th>Patrimônio</th>
+									<th>NS</th>
+									<th>Local</th>
+									<th class="text-center">Opção</th>
+								</tr>
+							</thead>
+							<tfoot>
+								<tr>
+									<th>Nome</th>
+									<th>MAC</th>
+									<th>Modelo</th>
+									<th>Patrimônio</th>
+									<th>NS</th>
+									<th>Descrição</th>
+									<th class="text-center">Opção</th>
 
-         
+								</tr>
+							</tfoot>
+							<tbody>
+								<tr th:each="patrimonio: ${patrimonios}"
+									th:href="@{www.google.com.br}">
 
-        </div>
-        <!-- /.container-fluid -->
+									<td th:text="${patrimonio.nome}"></td>
+									<td th:text="${patrimonio.mac}"></td>
+									<td th:text="${patrimonio.modelo.modelo}"></td>
+									<td th:text="${patrimonio.patrimonio}"></td>
+									<td th:text="${patrimonio.ns}"></td>
+									<td th:text="${patrimonio.descricao}"></td>
+									<td class="text-center"><a href="#"
+										class="badge badge-primary"
+										th:href="@{/patrimonios/{codigo}(codigo=${patrimonio.codigo})}">Editar</a>
+										<a href="#" class="badge badge-warning"
+										th:href="@{/patrimonios/{codigo}(codigo=${patrimonio.codigo})}">Associar</a>
+										<a href="#" class="badge badge-danger"
+										data-target="#confirmacaoExclusaoModal" data-toggle="modal"
+										th:attr="data-codigo=${patrimonio.codigo}, data-descricao=${patrimonio.patrimonio}, data-passaurl=${'patrimonios/'}">Excluir</a>
+									</td>
 
-        <!-- Sticky Footer -->
-        <footer class="sticky-footer">
-          <div class="container my-auto">
-            <div class="copyright text-center my-auto">
-              <span>Copyright © https://github.com/Fernando-Lima/Gerenciador-Web-Inova 2018</span>
-            </div>
-          </div>
-        </footer>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<div th:include="DialogConfirmaExclusao"></div>
+			</div>
 
-      </div>
-      <!-- /.content-wrapper -->
 
-    </div>
-    <!-- /#wrapper -->
+
+		</div>
+		<!-- /.container-fluid -->
+
+		<!-- Sticky Footer -->
+		<footer class="sticky-footer">
+			<div class="container my-auto">
+				<div class="copyright text-center my-auto">
+					<span>Copyright ©
+						https://github.com/Fernando-Lima/Gerenciador-Web-Inova 2018</span>
+				</div>
+			</div>
+		</footer>
+
+	</div>
+	<!-- /.content-wrapper -->
+
+	</div>
+	<!-- /#wrapper -->
 
 </section>
 

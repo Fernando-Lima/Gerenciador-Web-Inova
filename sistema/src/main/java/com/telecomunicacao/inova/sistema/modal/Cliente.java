@@ -19,7 +19,7 @@ public class Cliente extends MinhaEntidade{
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm:ss", timezone="GMT-3")
 	private Date sla;
 	private Integer numeroAditivo;
-	private Integer cnpj;
+	private Long cnpj;
 	private String endereco;
 	private Cidade cidade;
 	@Enumerated(EnumType.STRING)
@@ -63,10 +63,10 @@ public class Cliente extends MinhaEntidade{
 	public void setNumeroAditivo(Integer numeroAditivo) {
 		this.numeroAditivo = numeroAditivo;
 	}
-	public Integer getCnpj() {
+	public Long getCnpj() {
 		return cnpj;
 	}
-	public void setCnpj(Integer cnpj) {
+	public void setCnpj(Long cnpj) {
 		this.cnpj = cnpj;
 	}
 	public String getEndereco() {

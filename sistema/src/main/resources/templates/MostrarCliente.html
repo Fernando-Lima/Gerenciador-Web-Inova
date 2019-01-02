@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html layout:decorator="LayoutPadrao"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Cadastro de Cliente</title>
+</head>
+<section layout:fragment="conteudo">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="main col-sm-9 col-md-10" th:object="${cliente}">
+				<div th:include="MensagemGeral"></div>
+				<nav aria-label="breadcrumb">
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item"><a th:href="@{/clientes}">Clientes</a></li>
+						<li class="breadcrumb-item" th:text="${cliente.nome}">Clientes</li>
+					</ol>
+				</nav>
+
+				<input th:field="*{codigo}" type="hidden" />
+				<div class="card">
+					<div class="card-body">
+						<div class="row">
+							<label>Código:</label>
+							<p class="col-sm-4" th:text="${cliente.codigo}"></p>
+						</div>
+						<div class="row">
+							<label>Nome:</label>
+							<p class="col-sm-4" th:text="${cliente.nome}"></p>
+
+							<label>CNPJ:</label>
+							<p class="col-sm-3" th:text="${cliente.cnpj}"></p>
+						</div>
+						<div class="row">
+							<label>Cidade:</label>
+							<p class="col-sm-4" th:text="${cliente.cidade.nome}"></p>
+
+							<label>Email:</label>
+							<p class="col-sm-4" th:text="${cliente.email}"></p>
+						</div>
+
+						<div class="row">
+							<label>Endereço:</label>
+							<p class="col-sm-4" th:text="${cliente.endereco}"></p>
+
+							<label>Telefone:</label>
+							<p class="col-sm-3" th:text="${cliente.telefone}"></p>
+						</div>
+						<div class="row">
+							<label>Situação:</label>
+							<p class="col-sm-4" th:text="${cliente.situacao}"></p>
+
+							<label>Número do aditivo:</label>
+							<p class="col-sm-3" th:text="${cliente.numeroAditivo}"></p>
+						</div>
+					
+						<div class="row">
+							<label>Início do contrato:</label>
+							<p class="col-sm-4" th:text="${cliente.dataInicioContrato}"></p>
+
+							<label>Final do contrato:</label>
+							<p class="col-sm-3" th:text="${cliente.dataFinalContrato}"></p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</section>
+</html>

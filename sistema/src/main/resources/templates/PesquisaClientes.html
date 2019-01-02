@@ -40,6 +40,7 @@
 						<td th:text="${cliente.cnpj}"></td>
 						<td th:text="${cliente.cidade.nome}"></td>
 						<td class="text-center">
+						<a href="#" class="badge badge-warning" th:href="@{/clientes/verCliente/{codigo}(codigo=${cliente.codigo})}">Ver cliente</a>
 							<a href="#" class="badge badge-primary" th:href="@{/clientes/{codigo}(codigo=${cliente.codigo})}">Editar</a>
 							<a href="#" class="badge badge-danger" data-target="#confirmacaoExclusaoModal" 
 							data-toggle="modal" th:attr="data-codigo=${cliente.codigo}, data-descricao=${cliente.nome}, data-passaurl=${'clientes/'}"  >Excluir</a>

@@ -105,4 +105,13 @@ public class ClienteController {
 	public List<Situacao> listaSituacao() {
 		return Arrays.asList(Situacao.values());
 	}
+	
+	//Mostrar informações do cliente
+	@RequestMapping("/verCliente/{codigo}")
+	public ModelAndView verCliente(@PathVariable Long codigo) {
+		ModelAndView mv = new ModelAndView("MostrarCliente");
+		Cliente cliente = clienteDao.buscar(Cliente.class, codigo, TAG);
+		mv.addObject(cliente);
+		return mv;
+	}
 }
