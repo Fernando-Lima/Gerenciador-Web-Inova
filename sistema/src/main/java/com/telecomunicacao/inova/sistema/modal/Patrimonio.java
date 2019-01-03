@@ -5,7 +5,7 @@ import java.util.Date;
 public class Patrimonio extends MinhaEntidade{
 	private String nome = "Telefone Ip";
 	private Long patrimonio;
-	private String descricao = "Prefeitura Dois Irmãos";
+	private String descricao;
 	private Modelo modelo;
 	private String mac;
 	private String ns; 
