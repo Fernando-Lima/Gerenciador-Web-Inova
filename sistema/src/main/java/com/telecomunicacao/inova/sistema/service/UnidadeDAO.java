@@ -22,4 +22,11 @@ public class UnidadeDAO<T extends MinhaEntidade> extends RestTemplateDAO<T> {
 				});
 		return entity.getBody();
 	}
+	public List<Unidade> listByCliente(Long codigo){
+		ResponseEntity<List<Unidade>> entity = restTemplate.exchange("/unidade/cliente/"+codigo, HttpMethod.GET, null,
+				new ParameterizedTypeReference<List<Unidade>>() {
+				});
+		return entity.getBody();
+	}
+	
 }
