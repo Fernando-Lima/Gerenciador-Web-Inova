@@ -15,7 +15,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.telecomunicacao.inova.sistema.modal.Cidade;
 import com.telecomunicacao.inova.sistema.modal.Cliente;
 import com.telecomunicacao.inova.sistema.modal.Situacao;
+import com.telecomunicacao.inova.sistema.modal.Unidade;
 import com.telecomunicacao.inova.sistema.service.ClienteDAO;
+import com.telecomunicacao.inova.sistema.service.UnidadeDAO;
 import com.telecomunicacao.inova.sistema.service.CidadeDAO;
 
 @Controller
@@ -29,6 +31,9 @@ public class ClienteController {
 
 	@Autowired
 	CidadeDAO<Cidade> cidadeDao;
+	
+	@Autowired
+	UnidadeDAO<Unidade> unidadeDao;
 
 	//Listar
 	@RequestMapping
@@ -108,10 +113,15 @@ public class ClienteController {
 	
 	//Mostrar informações do cliente
 	@RequestMapping("/verCliente/{codigo}")
-	public ModelAndView verCliente(@PathVariable Long codigo) {
+	public ModelAndView verCliente(@PathVariable Long codigo) { 
 		ModelAndView mv = new ModelAndView("MostrarCliente");
 		Cliente cliente = clienteDao.buscar(Cliente.class, codigo, TAG);
 		mv.addObject(cliente);
 		return mv;
+	}
+	@ModelAttribute("listaUnidades")
+	public List<Unidade> listarUnidades(){
+		List<Unidade> unidades = unidadeDao.listAll();
+		return unidades;
 	}
 }
