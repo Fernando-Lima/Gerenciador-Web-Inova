@@ -113,15 +113,12 @@ public class ClienteController {
 	
 	//Mostrar informações do cliente
 	@RequestMapping("/verCliente/{codigo}")
-	public ModelAndView verCliente(@PathVariable Long codigo) { 
+	public ModelAndView verCliente(@PathVariable Long codigo) {
 		ModelAndView mv = new ModelAndView("MostrarCliente");
+		List<Unidade> unidades = unidadeDao.listByCliente(codigo);
 		Cliente cliente = clienteDao.buscar(Cliente.class, codigo, TAG);
 		mv.addObject(cliente);
+		mv.addObject("listaUnidades",unidades);
 		return mv;
-	}
-	@ModelAttribute("listaUnidades")
-	public List<Unidade> listarUnidades(){
-		List<Unidade> unidades = unidadeDao.listAll();
-		return unidades;
 	}
 }
