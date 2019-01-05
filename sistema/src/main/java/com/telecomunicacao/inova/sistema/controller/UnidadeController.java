@@ -20,6 +20,7 @@ import com.telecomunicacao.inova.sistema.service.UnidadeDAO;
 @RequestMapping("/unidades")
 public class UnidadeController {
 	private static final String TAG = "/unidade";
+	private Long codigoCliente;
 
 	@Autowired
 	UnidadeDAO<Unidade> unidadeDao;
@@ -41,10 +42,15 @@ public class UnidadeController {
 		return mv;
 	}
 
-	@RequestMapping("/novo")
-	public ModelAndView novo() {
+	@RequestMapping("/novo/{codigo}")
+	public ModelAndView novo(@PathVariable Long codigo) {
 		ModelAndView mv = new ModelAndView("cadastroUnidade");
-		mv.addObject(new Unidade());
+		Cliente cliente = new Cliente();
+		Unidade unidade = new Unidade();
+		cliente.setCodigo(codigo);
+		unidade.setCliente(cliente);
+		mv.addObject(unidade);
+		System.out.println(cliente.getCodigo());
 		return mv;
 	}
 
@@ -58,7 +64,7 @@ public class UnidadeController {
 				unidadeDao.atualizar(Unidade.class, unidade, TAG);
 				attributes.addFlashAttribute("mensagem", unidade.getNome() + " atualizada com sucesso!");
 			}
-			return "redirect:/unidades/novo";
+			return "redirect:/clientes/verCliente/"+unidade.getCliente().getCodigo();
 		} catch (Exception e) {
 			e.printStackTrace();
 			return "404";

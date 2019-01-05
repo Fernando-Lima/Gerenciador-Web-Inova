@@ -11,15 +11,12 @@
 		<div class="row">
 			<div class="main col-sm-9 col-md-10" th:object="${cliente}">
 				<div th:include="MensagemGeral"></div>
-				<nav aria-label="breadcrumb">
-					<ol class="breadcrumb">
-						<li class="breadcrumb-item"><a th:href="@{/clientes}">Clientes</a></li>
-						<li class="breadcrumb-item" th:text="${cliente.nome}">Clientes</li>
-					</ol>
-				</nav>
 
 				<input th:field="*{codigo}" type="hidden" />
 				<div class="card">
+					<div class="card-header">
+						Informações do cliente 
+					</div>
 					<div class="card-body">
 						<div class="row">
 							<label>Código:</label>
@@ -54,7 +51,7 @@
 							<label>Número do aditivo:</label>
 							<p class="col-sm-3" th:text="${cliente.numeroAditivo}"></p>
 						</div>
-					
+
 						<div class="row">
 							<label>Início do contrato:</label>
 							<p class="col-sm-4" th:text="${cliente.dataInicioContrato}"></p>
@@ -62,35 +59,46 @@
 							<label>Final do contrato:</label>
 							<p class="col-sm-3" th:text="${cliente.dataFinalContrato}"></p>
 						</div>
-						
+
 					</div>
 				</div>
-				<div class="card-body">
-			<table class="table table-hover">
-				<thead>
-					<tr>
-						<th scope="col">#</th>
-						<th scope="col">Nome</th>
-						<th scope="col" class="text-center">Opção</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr th:each="unidade: ${listaUnidades}">
-						<td scope="row" th:text="${unidade.codigo}"></td>
-						<td th:text="${unidade.nome}"></td>
-						<td class="text-center"><a href="#"
-							class="badge badge-primary"
-							th:href="@{/unidades/{codigo}(codigo=${unidade.codigo})}">Editar</a>
-							<a href="#" class="badge badge-danger"
-							data-target="#confirmacaoExclusaoModal" data-toggle="modal"
-							th:attr="data-codigo=${unidade.codigo}, data-descricao=${unidade.nome}, data-passaurl=${'unidades/'}">Excluir</a></td>
-					</tr>
-					<tr>
-						<td colspan="6" th:if="${#lists.isEmpty(listaUnidades)}">Nenhuma unidade foi encontrado</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
+				
+				<div class="card">
+					<div class="card-header">Unidades
+					<a th:href="@{/unidades/novo/{codigo}(codigo=${cliente.codigo})}" class="right">
+			<button class="btn btn-outline-primary my-2 my-sm-0">Novo</button>
+		</a>
+					</div>
+					
+					<div class="card-body">
+						<table class="table table-hover">
+							<thead>
+								<tr>
+									<th scope="col">#</th>
+									<th scope="col">Nome</th>
+									<th scope="col" class="text-center">Opção</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="unidade: ${listaUnidades}">
+									<td scope="row" th:text="${unidade.codigo}"></td>
+									<td th:text="${unidade.nome}"></td>
+									<td class="text-center"><a href="#"
+										class="badge badge-primary"
+										th:href="@{/unidades/{codigo}(codigo=${unidade.codigo})}">Editar</a>
+										<a href="#" class="badge badge-danger"
+										data-target="#confirmacaoExclusaoModal" data-toggle="modal"
+										th:attr="data-codigo=${unidade.codigo}, data-descricao=${unidade.nome}, data-passaurl=${'unidades/'}">Excluir</a></td>
+								</tr>
+								<tr>
+									<td colspan="6" th:if="${#lists.isEmpty(listaUnidades)}">Nenhuma
+										unidade foi encontrado</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+
 			</div>
 		</div>
 
