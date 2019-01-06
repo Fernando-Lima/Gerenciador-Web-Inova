@@ -17,4 +17,10 @@ public class Unidade extends MinhaEntidade{
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
+	@Override
+	public String toString() {
+		return "Unidade [nome=" + nome + ", cliente=" + cliente + "]";
+	}
+	
+	
 }

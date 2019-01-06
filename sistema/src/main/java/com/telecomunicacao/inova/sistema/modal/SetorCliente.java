@@ -32,6 +32,12 @@ public class SetorCliente extends MinhaEntidade{
 	public void setRamal(Integer ramal) {
 		this.ramal = ramal;
 	}
+	@Override
+	public String toString() {
+		return "SetorCliente [nome=" + nome + ", unidade=" + unidade + ", telefone=" + telefone + ", ramal=" + ramal
+				+ "]";
+	}
+	
 	
 	
 }

@@ -12,21 +12,27 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.telecomunicacao.inova.sistema.modal.Cliente;
+import com.telecomunicacao.inova.sistema.modal.Setor;
+import com.telecomunicacao.inova.sistema.modal.SetorCliente;
 import com.telecomunicacao.inova.sistema.modal.Unidade;
 import com.telecomunicacao.inova.sistema.service.ClienteDAO;
+import com.telecomunicacao.inova.sistema.service.SetorClienteDAO;
+import com.telecomunicacao.inova.sistema.service.SetorDAO;
 import com.telecomunicacao.inova.sistema.service.UnidadeDAO;
 
 @Controller
 @RequestMapping("/unidades")
 public class UnidadeController {
 	private static final String TAG = "/unidade";
-	private Long codigoCliente;
 
 	@Autowired
 	UnidadeDAO<Unidade> unidadeDao;
 
 	@Autowired
 	ClienteDAO<Cliente> clienteDao;
+	
+	@Autowired
+	SetorClienteDAO<SetorCliente> setorClienteDao;
 
 	@RequestMapping
 	public ModelAndView listar() {
@@ -50,7 +56,6 @@ public class UnidadeController {
 		cliente.setCodigo(codigo);
 		unidade.setCliente(cliente);
 		mv.addObject(unidade);
-		System.out.println(cliente.getCodigo());
 		return mv;
 	}
 
@@ -98,4 +103,15 @@ public class UnidadeController {
 		List<Cliente> clientes = clienteDao.listAll();
 		return clientes;
 	}
+	
+	//Mostrar informações da unidade
+		@RequestMapping("/verUnidade/{codigo}")
+		public ModelAndView verCliente(@PathVariable Long codigo) {
+			ModelAndView mv = new ModelAndView("MostrarUnidade");
+			List<SetorCliente> setores = setorClienteDao.listByUnidade(codigo);
+			Unidade unidade = unidadeDao.buscar(Unidade.class, codigo, TAG);
+			mv.addObject(unidade);
+			mv.addObject("listaSetores",setores);
+			return mv;
+		}
 }

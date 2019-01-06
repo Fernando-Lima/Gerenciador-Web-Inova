@@ -42,10 +42,14 @@ public class SetorClienteController {
 		return mv;
 	}
 	//novo
-	@RequestMapping("/novo")
-	public ModelAndView novo() {
+	@RequestMapping("/novo/{codigo}")
+	public ModelAndView novo(@PathVariable Long codigo) {
 		ModelAndView mv = new ModelAndView("cadastroSetorCliente");
-		mv.addObject(new SetorCliente());
+		Unidade unidade = new Unidade();
+		SetorCliente setorCliente = new SetorCliente();
+		unidade.setCodigo(codigo);
+		setorCliente.setUnidade(unidade);
+		mv.addObject(setorCliente);
 		return mv;
 	}
 	
@@ -59,8 +63,11 @@ public class SetorClienteController {
 	}
 	
 	//salvar
-	@RequestMapping(value="/salvar")
-	public String salvar(SetorCliente setorCliente, RedirectAttributes attributes) {
+	@RequestMapping(value="/salvar/{codigo}")
+	public String salvar(SetorCliente setorCliente, RedirectAttributes attributes, @PathVariable Long codigo) {
+		Unidade unidade = new Unidade();
+		unidade.setCodigo(codigo);
+		setorCliente.setUnidade(unidade);
 		try {
 			if(setorCliente.getCodigo() == null) {
 				setorClienteDao.salvar(SetorCliente.class, setorCliente, TAG);
@@ -69,7 +76,7 @@ public class SetorClienteController {
 				setorClienteDao.atualizar(SetorCliente.class, setorCliente, TAG);
 				attributes.addFlashAttribute("mensagem", "Setor " + setorCliente.getNome() + " atualizado com sucesso!");
 			}
-			return "redirect:/setorClientes/novo";
+			return "redirect:/clientes/verCliente/"+setorCliente.getUnidade().getCodigo();
 		} catch (Exception e) {
 			e.printStackTrace();
 			return "404";

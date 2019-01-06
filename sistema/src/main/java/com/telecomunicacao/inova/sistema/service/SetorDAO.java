@@ -11,6 +11,7 @@ import org.springframework.web.client.RestTemplate;
 
 import com.telecomunicacao.inova.sistema.modal.MinhaEntidade;
 import com.telecomunicacao.inova.sistema.modal.Setor;
+import com.telecomunicacao.inova.sistema.modal.Unidade;
 
 @Service
 public class SetorDAO<T extends MinhaEntidade> extends RestTemplateDAO<T> {

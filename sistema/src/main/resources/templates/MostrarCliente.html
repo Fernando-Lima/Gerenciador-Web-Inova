@@ -14,9 +14,7 @@
 
 				<input th:field="*{codigo}" type="hidden" />
 				<div class="card">
-					<div class="card-header">
-						Informações do cliente 
-					</div>
+					<div class="card-header">Informações do cliente</div>
 					<div class="card-body">
 						<div class="row">
 							<label>Código:</label>
@@ -62,14 +60,17 @@
 
 					</div>
 				</div>
-				
+
 				<div class="card">
-					<div class="card-header">Unidades
-					<a th:href="@{/unidades/novo/{codigo}(codigo=${cliente.codigo})}" class="right">
-			<button class="btn btn-outline-primary my-2 my-sm-0">Novo</button>
-		</a>
+					<div class="card-header">
+						Unidades <a
+							th:href="@{/unidades/novo/{codigo}(codigo=${cliente.codigo})}"
+							class="right">
+							<button class="btn btn-outline-primary my-2 my-sm-0">Nova
+								unidade</button>
+						</a>
 					</div>
-					
+
 					<div class="card-body">
 						<table class="table table-hover">
 							<thead>
@@ -84,7 +85,8 @@
 									<td scope="row" th:text="${unidade.codigo}"></td>
 									<td th:text="${unidade.nome}"></td>
 									<td class="text-center"><a href="#"
-										class="badge badge-primary"
+										class="badge badge-warning"
+										th:href="@{/unidades/verUnidade/{codigo}(codigo=${unidade.codigo})}">Ver unidade</a> <a href="#" class="badge badge-primary"
 										th:href="@{/unidades/{codigo}(codigo=${unidade.codigo})}">Editar</a>
 										<a href="#" class="badge badge-danger"
 										data-target="#confirmacaoExclusaoModal" data-toggle="modal"
@@ -97,6 +99,7 @@
 							</tbody>
 						</table>
 					</div>
+					<div th:include="DialogConfirmaExclusao"></div>
 				</div>
 
 			</div>

@@ -29,7 +29,7 @@
 							</div>
 							<div class="form-group col-md-6">
 								<label>Cliente:</label> <select class="form-control"
-									th:field="*{cliente.codigo}">
+									th:field="*{cliente.codigo}" disabled>
 									<option th:each="cliente : ${listaClientes}" th:text="${cliente.nome}"
 										th:value="${cliente.codigo}"></option>
 								</select>
