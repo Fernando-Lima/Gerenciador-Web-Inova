@@ -14,7 +14,8 @@
 
 				<input th:field="*{codigo}" type="hidden" />
 				<div class="card">
-					<div class="card-header" th:text="${unidade.cliente.nome}"></div>
+					<div class="card-header" th:text="${unidade.cliente.nome}">
+					</div>
 					<div class="card-body">
 						<div class="row">
 							<label>Código:</label>
@@ -43,6 +44,8 @@
 								<tr>
 									<th scope="col">#</th>
 									<th scope="col">Nome</th>
+									<th scope="col">Telefone</th>
+									<th scope="col">Ramal</th>
 									<th scope="col" class="text-center">Opção</th>
 								</tr>
 							</thead>
@@ -50,6 +53,8 @@
 								<tr th:each="setorCliente: ${listaSetores}">
 									<td scope="row" th:text="${setorCliente.codigo}"></td>
 									<td th:text="${setorCliente.nome}"></td>
+									<td th:text="${setorCliente.telefone}"></td>
+									<td th:text="${setorCliente.ramal}"></td>
 									<td class="text-center"><a href="#"
 										class="badge badge-primary"
 										th:href="@{/setorClientes/{codigo}(codigo=${setorCliente.codigo})}">Editar</a>

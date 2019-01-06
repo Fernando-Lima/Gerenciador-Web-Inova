@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.telecomunicacao.inova.sistema.modal.Cidade;
 import com.telecomunicacao.inova.sistema.modal.SetorCliente;
 import com.telecomunicacao.inova.sistema.modal.Unidade;
 import com.telecomunicacao.inova.sistema.service.SetorClienteDAO;
@@ -20,7 +19,8 @@ import com.telecomunicacao.inova.sistema.service.UnidadeDAO;
 @Controller
 @RequestMapping("/setorClientes")
 public class SetorClienteController {
-	private static String TAG = "/setorCliente";
+	private static final String TAG = "/setorCliente";
+	private static final String TAGUNIDADE = "/unidade";
 	
 	@Autowired
 	SetorClienteDAO<SetorCliente> setorClienteDao;
@@ -45,9 +45,8 @@ public class SetorClienteController {
 	@RequestMapping("/novo/{codigo}")
 	public ModelAndView novo(@PathVariable Long codigo) {
 		ModelAndView mv = new ModelAndView("cadastroSetorCliente");
-		Unidade unidade = new Unidade();
+		Unidade unidade = unidadeDao.buscar(Unidade.class, codigo, TAGUNIDADE);
 		SetorCliente setorCliente = new SetorCliente();
-		unidade.setCodigo(codigo);
 		setorCliente.setUnidade(unidade);
 		mv.addObject(setorCliente);
 		return mv;
@@ -76,7 +75,7 @@ public class SetorClienteController {
 				setorClienteDao.atualizar(SetorCliente.class, setorCliente, TAG);
 				attributes.addFlashAttribute("mensagem", "Setor " + setorCliente.getNome() + " atualizado com sucesso!");
 			}
-			return "redirect:/clientes/verCliente/"+setorCliente.getUnidade().getCodigo();
+			return "redirect:/unidades/verUnidade/"+setorCliente.getUnidade().getCodigo();
 		} catch (Exception e) {
 			e.printStackTrace();
 			return "404";

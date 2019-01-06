@@ -53,8 +53,9 @@ public class UnidadeController {
 	public ModelAndView novo(@PathVariable Long codigo) {
 		ModelAndView mv = new ModelAndView("cadastroUnidade");
 		Cliente cliente = clienteDao.buscar(Cliente.class, codigo, TAGCLIENTE);
-		mv.addObject(new Unidade());
-		mv.addObject(cliente);
+		Unidade unidade = new Unidade();
+		unidade.setCliente(cliente);
+		mv.addObject(unidade);
 		return mv;
 	}
 
