@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html layout:decorator="LayoutPadrao"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Cadastro de Cliente</title>
+</head>
+<section layout:fragment="conteudo">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="main col-sm-9 col-md-10" th:object="${unidade}">
+				<div th:include="MensagemGeral"></div>
+
+				<input th:field="*{codigo}" type="hidden" />
+				<div class="card">
+					<div class="card-header" th:text="${unidade.cliente.nome}"></div>
+					<div class="card-body">
+						<div class="row">
+							<label>Código:</label>
+							<p class="col-sm-4" th:text="${unidade.codigo}"></p>
+						</div>
+						<div class="row">
+							<label>Nome:</label>
+							<p class="col-sm-4" th:text="${unidade.nome}"></p>
+						</div>
+					</div>
+				</div>
+
+				<div class="card">
+					<div class="card-header">
+						Setores <a
+							th:href="@{/setorClientes/novo/{codigo}(codigo=${unidade.codigo})}"
+							class="right">
+							<button class="btn btn-outline-primary my-2 my-sm-0">Novo
+								setor</button>
+						</a>
+					</div>
+
+					<div class="card-body">
+						<table class="table table-hover">
+							<thead>
+								<tr>
+									<th scope="col">#</th>
+									<th scope="col">Nome</th>
+									<th scope="col" class="text-center">Opção</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="setorCliente: ${listaSetores}">
+									<td scope="row" th:text="${setorCliente.codigo}"></td>
+									<td th:text="${setorCliente.nome}"></td>
+									<td class="text-center"><a href="#"
+										class="badge badge-primary"
+										th:href="@{/setorClientes/{codigo}(codigo=${setorCliente.codigo})}">Editar</a>
+										<a href="#" class="badge badge-danger"
+										data-target="#confirmacaoExclusaoModal" data-toggle="modal"
+										th:attr="data-codigo=${setorCliente.codigo}, data-descricao=${setorCliente.nome}, data-passaurl=${'setorClientes/'}">Excluir</a></td>
+								</tr>
+								<tr>
+									<td colspan="6" th:if="${#lists.isEmpty(listaSetores)}">Nenhum
+										Setor foi encontrado</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div th:include="DialogConfirmaExclusao"></div>
+				</div>
+
+			</div>
+		</div>
+
+	</div>
+</section>
+</html>
