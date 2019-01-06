@@ -24,6 +24,7 @@ import com.telecomunicacao.inova.sistema.service.UnidadeDAO;
 @RequestMapping("/unidades")
 public class UnidadeController {
 	private static final String TAG = "/unidade";
+	private static final String TAGCLIENTE = "/cliente";
 
 	@Autowired
 	UnidadeDAO<Unidade> unidadeDao;
@@ -51,16 +52,17 @@ public class UnidadeController {
 	@RequestMapping("/novo/{codigo}")
 	public ModelAndView novo(@PathVariable Long codigo) {
 		ModelAndView mv = new ModelAndView("cadastroUnidade");
-		Cliente cliente = new Cliente();
-		Unidade unidade = new Unidade();
-		cliente.setCodigo(codigo);
-		unidade.setCliente(cliente);
-		mv.addObject(unidade);
+		Cliente cliente = clienteDao.buscar(Cliente.class, codigo, TAGCLIENTE);
+		mv.addObject(new Unidade());
+		mv.addObject(cliente);
 		return mv;
 	}
 
-	@RequestMapping("/salvar")
-	public String salvar(Unidade unidade, RedirectAttributes attributes) {
+	@RequestMapping("/salvar/{codigo}")
+	public String salvar(Unidade unidade, RedirectAttributes attributes, @PathVariable Long codigo) {
+		Cliente cliente = new Cliente();
+		cliente.setCodigo(codigo);
+		unidade.setCliente(cliente);
 		try {
 			if (unidade.getCodigo() == null) {
 				unidadeDao.salvar(Unidade.class, unidade, TAG);
@@ -76,7 +78,7 @@ public class UnidadeController {
 		}
 	}
 	
-	//Buscar pelo ID
+	//Buscar unidade pelo ID
 	@RequestMapping("{codigo}")
 	public ModelAndView fundById(@PathVariable Long codigo) {
 		ModelAndView mv = new ModelAndView("cadastroUnidade");
@@ -84,7 +86,7 @@ public class UnidadeController {
 		mv.addObject(unidade);
 		return mv;
 	}
-
+	
 	@RequestMapping(value ="{codigo}", method = RequestMethod.DELETE)
 	public String excluir(@PathVariable Long codigo, RedirectAttributes attributes) {
 		try {
