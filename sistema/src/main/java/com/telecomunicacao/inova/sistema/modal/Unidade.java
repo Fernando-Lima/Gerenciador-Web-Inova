@@ -18,6 +18,7 @@ public class Unidade extends MinhaEntidade{
 	private Integer ramal;
 	private Date dataSolicitacao;
 	private StatusPortabilidade statusPortabilidade;
+	private Provedor provedor;
 	
 	public String getNome() {
 		return nome;
@@ -102,6 +103,12 @@ public class Unidade extends MinhaEntidade{
 	}
 	public void setStatusPortabilidade(StatusPortabilidade statusPortabilidade) {
 		this.statusPortabilidade = statusPortabilidade;
+	}
+	public Provedor getProvedor() {
+		return provedor;
+	}
+	public void setProvedor(Provedor provedor) {
+		this.provedor = provedor;
 	}
 	@Override
 	public String toString() {
